@@ -1,0 +1,107 @@
+<html>
+<head>
+  <title>Home Medical Visits</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+</head>
+
+<body>
+  <div class = "container">
+    
+    <p>Home Medical Visits</p>
+     Data loaded <span id="value"></span> here
+
+
+    <table style="width:100%" id="ex-table">
+      <tr id="tr">
+        <th>City</th>
+        <th>City_ID</th> 
+        <th>Date</th>
+        <th>GeoPoint</th>
+        <th>ID_Personal</th>
+        <th>ID_Type</th>
+        <th>LAT</th>
+        <th>LON</th>
+        <th>N_Home_Visits</th>
+        <th>Pathology</th>
+        <th>Patient_Age</th>
+        <th>Time_Delay</th>
+        <th>Visit_Status</th>
+        <th>Zip_Code</th>
+      </tr>
+    </table> 
+
+  </div>
+
+</body>
+
+<script>
+  // Your web app's Firebase configuration
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyCHA3rBGSAdS4QXvXSOnjhSdxe4ek-R73c",
+    authDomain: "inf551-project-48265.firebaseapp.com",
+    databaseURL: "https://inf551-project-48265.firebaseio.com",
+    projectId: "inf551-project-48265",
+    storageBucket: "inf551-project-48265.appspot.com",
+    messagingSenderId: "886384796957",
+    appId: "1:886384796957:web:b5e62ee8c4b112acd8adf4",
+    measurementId: "G-5C2QT45TNQ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  console.log("initialized")
+
+  var value = document.getElementById("value");
+  // reference points to the child 'data'
+  var dbRef = firebase.database().ref().child("testdata");
+
+  // dbRef.on("value",function(snapshot){
+  //   console.log(JSON.stringify(snapshot.val()));
+  //   value.innerText = snapshot.val();
+  // });
+
+  dbRef.once('value', function(snapshot)
+  {
+        if(snapshot.exists())
+        {
+            var content = '';
+            snapshot.forEach(function(data)
+            {
+                var val = data.val();
+                content +='<tr>';
+                content += '<td>' + val.City + '</td>';
+                content += '<td>' + val.City_ID + '</td>';
+                content += '<td>' + val.Date + '</td>';
+                content += '<td>' + val.Geo_Point + '</td>';
+                content += '<td>' + val.ID_Personal + '</td>';
+                content += '<td>' + val.ID_Type + '</td>';
+                content += '<td>' + val.Is_Patient_Minor + '</td>';
+                content += '<td>' + val.LAT + '</td>';
+                content += '<td>' + val.LON + '</td>';
+                content += '<td>' + val.N_Home_Visits + '</td>';
+                content += '<td>' + val.Pathology + '</td>';
+                content += '<td>' + val.Patient_Age + '</td>';
+                content += '<td>' + val.Time_Delay + '</td>';
+                content += '<td>' + val.Visit_Status + '</td>';
+                content += '<td>' + val.Zipcode + '</td>';
+                content += '</tr>';
+            });
+            $('#ex-table').append(content);
+        }
+    });
+
+</script>
+</html>
