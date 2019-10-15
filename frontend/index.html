@@ -3,9 +3,9 @@
   <title>Home Medical Visits</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
   <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script> -->
@@ -13,15 +13,33 @@
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+  <script>
+
+    var orderBy = "City";
+    var ascending_flag = 1;
+
+    function locale(a, b) {
+      if (typeof(a[orderBy])  === "string") {
+        return ascending_flag * a[orderBy].localeCompare(b[orderBy]);
+      } else {
+        return ascending_flag * (a[orderBy] - b[orderBy]);
+      }
+    }; 
+
+  </script>
 </head>
 
 <body>
+  
   <div class = "container">
     
     <p>Home Medical Visits</p>
-     Data loaded <span id="value"></span> here
 
-
+    <button class="btn btn-primary my-1" onclick="reloadTable('City', 1)">City</button>
+    <button class="btn btn-primary my-1" onclick="reloadTable('City', -1)">City(Des)</button>
+    <button class="btn btn-primary my-1" onclick="reloadTable('City_ID', 1)">CityID</button>
+    <button class="btn btn-primary my-1" onclick="reloadTable('City_ID', -1)">CityID(Des)</button>
+    
     <table style="width:100%" id="ex-table">
       <tr id="tr">
         <th>City</th>
@@ -46,8 +64,6 @@
 </body>
 
 <script>
-  // Your web app's Firebase configuration
-
   var firebaseConfig = {
     apiKey: "AIzaSyCHA3rBGSAdS4QXvXSOnjhSdxe4ek-R73c",
     authDomain: "inf551-project-48265.firebaseapp.com",
@@ -58,50 +74,81 @@
     appId: "1:886384796957:web:b5e62ee8c4b112acd8adf4",
     measurementId: "G-5C2QT45TNQ"
   };
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-
   console.log("initialized")
-
   var value = document.getElementById("value");
-  // reference points to the child 'data'
-  var dbRef = firebase.database().ref().child("testdata");
+  var dbRef = firebase.database().ref().child("data");
 
-  // dbRef.on("value",function(snapshot){
-  //   console.log(JSON.stringify(snapshot.val()));
-  //   value.innerText = snapshot.val();
-  // });
+  function loadTable() {
+    dbRef.once('value', function(snapshot) {
+      if(snapshot.exists()) {
+        var arr = new Array();
+        snapshot.forEach(function(data) {
+          var val = data.val();
+          var tmp = new Object();
+          tmp["City"] = val.City;
+          tmp["City_ID"] = val.City_ID;
+          tmp["Date"] = val.Date;
+          tmp["Geo_Point"] = val.Geo_Point;
+          tmp["ID_Personal"] = val.ID_Personal;
+          tmp["ID_Type"] = val.ID_Type;
+          tmp["Is_Patient_Minor"] = val.Is_Patient_Minor;
+          tmp["LAT"] = val.LAT;
+          tmp["LON"] = val.LON;
+          tmp["N_Home_Visits"] = val.N_Home_Visits;
+          tmp["Pathology"] = val.Pathology;
+          tmp["Patient_Age"] = val.Patient_Age;
+          tmp["Time_Delay"] = val.Time_Delay;
+          tmp["Geo_Point"] = val.Geo_Point;
+          tmp["Visit_Status"] = val.Visit_Status;
+          tmp["Zipcode"] = val.Zipcode;
+          arr.push(tmp);
+        });
 
-  dbRef.once('value', function(snapshot)
-  {
-        if(snapshot.exists())
-        {
-            var content = '';
-            snapshot.forEach(function(data)
-            {
-                var val = data.val();
-                content +='<tr>';
-                content += '<td>' + val.City + '</td>';
-                content += '<td>' + val.City_ID + '</td>';
-                content += '<td>' + val.Date + '</td>';
-                content += '<td>' + val.Geo_Point + '</td>';
-                content += '<td>' + val.ID_Personal + '</td>';
-                content += '<td>' + val.ID_Type + '</td>';
-                content += '<td>' + val.Is_Patient_Minor + '</td>';
-                content += '<td>' + val.LAT + '</td>';
-                content += '<td>' + val.LON + '</td>';
-                content += '<td>' + val.N_Home_Visits + '</td>';
-                content += '<td>' + val.Pathology + '</td>';
-                content += '<td>' + val.Patient_Age + '</td>';
-                content += '<td>' + val.Time_Delay + '</td>';
-                content += '<td>' + val.Visit_Status + '</td>';
-                content += '<td>' + val.Zipcode + '</td>';
-                content += '</tr>';
-            });
-            $('#ex-table').append(content);
-        }
-    });
+        arr.sort(locale);
+        var content = '';
+        for(var i in arr) {
+          content += '<tr>';
+          content += '<td>' + arr[i].City + '</td>';
+          content += '<td>' + arr[i].City_ID + '</td>';
+          content += '<td>' + arr[i].Date + '</td>';
+          content += '<td>' + arr[i].Geo_Point + '</td>';
+          content += '<td>' + arr[i].ID_Personal + '</td>';
+          content += '<td>' + arr[i].ID_Type + '</td>';
+          content += '<td>' + arr[i].Is_Patient_Minor + '</td>';
+          content += '<td>' + arr[i].LAT + '</td>';
+          content += '<td>' + arr[i].LON + '</td>';
+          content += '<td>' + arr[i].N_Home_Visits + '</td>';
+          content += '<td>' + arr[i].Pathology + '</td>';
+          content += '<td>' + arr[i].Patient_Age + '</td>';
+          content += '<td>' + arr[i].Time_Delay + '</td>';
+          content += '<td>' + arr[i].Visit_Status + '</td>';
+          content += '<td>' + arr[i].Zipcode + '</td>';
+          content += '</tr>';
+        };
+        $('#ex-table').append(content);
+          }
+      });
+  };
 
+  function deleteTable() {
+    var tb = document.getElementById('ex-table');
+    var rowNum = tb.rows.length;
+    for (i = 1; i < rowNum; i++) {
+      tb.deleteRow(i);
+      rowNum = rowNum - 1;
+      i = i - 1;
+    }
+  };
+
+  function reloadTable(a, b) {
+    orderBy = a;
+    ascending_flag = b;
+    deleteTable();
+    loadTable();
+  };
+
+  loadTable();
 </script>
 </html>
