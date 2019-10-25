@@ -15,9 +15,13 @@
   <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
   <script>
 
+    //initialize arguments(orderBy, ascending_flag)
+    //ascending_flag =  1 -> ascending
+    //ascending_flag = -1 -> descending
     var orderBy = "City";
     var ascending_flag = 1;
 
+    //used for sorting comparity
     function locale(a, b) {
       if (typeof(a[orderBy])  === "string") {
         return ascending_flag * a[orderBy].localeCompare(b[orderBy]);
@@ -35,10 +39,10 @@
     
     <p>Home Medical Visits</p>
 
-    <button class="btn btn-primary my-1" onclick="reloadTable('City', 1)">City</button>
-    <button class="btn btn-primary my-1" onclick="reloadTable('City', -1)">City(Des)</button>
-    <button class="btn btn-primary my-1" onclick="reloadTable('City_ID', 1)">CityID</button>
-    <button class="btn btn-primary my-1" onclick="reloadTable('City_ID', -1)">CityID(Des)</button>
+    <button class="btn btn-primary" onclick="reloadTable('City', 1)">City</button>
+    <button class="btn btn-primary" onclick="reloadTable('City', -1)">City(Des)</button>
+    <button class="btn btn-primary" onclick="reloadTable('City_ID', 1)">CityID</button>
+    <button class="btn btn-primary" onclick="reloadTable('City_ID', -1)">CityID(Des)</button>
     
     <table style="width:100%" id="ex-table">
       <tr id="tr">
@@ -76,9 +80,9 @@
   };
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-  console.log("initialized")
+  console.log("initialized");
   var value = document.getElementById("value");
-  var dbRef = firebase.database().ref().child("data");
+  var dbRef = firebase.database().ref().child("testdata");
 
   function loadTable() {
     dbRef.once('value', function(snapshot) {
@@ -107,6 +111,7 @@
         });
 
         arr.sort(locale);
+        console.log('Completed sorting');
         var content = '';
         for(var i in arr) {
           content += '<tr>';
@@ -142,6 +147,7 @@
     }
   };
 
+  //change arguments, delete odd table, and load new table  
   function reloadTable(a, b) {
     orderBy = a;
     ascending_flag = b;
