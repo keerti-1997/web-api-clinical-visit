@@ -88,15 +88,9 @@
     }
 
     i {
-      border: solid black;
-      border-width: 0 3px 3px 0;
+      font-size: 20px;
       display: inline-block;
-      padding: 5px;
-    }
-    .down {
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-      margin-right: 100px;
+      padding-bottom: 10px;
     }
 
     .inline-img {
@@ -107,21 +101,21 @@
     }
 
     table {
-         font-family: arial, sans-serif;
-         border-collapse: collapse;
-         width: 100%;
-         font-size: 12px;
-     }
+     font-family: arial, sans-serif;
+     border-collapse: collapse;
+     width: 100%;
+     font-size: 12px;
+    }
 
-     td, th {
-         border: 1px solid #dddddd;
-         text-align: left;
-         padding: 8px;
-     }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
 
-     tr:nth-child(even) {
-         background-color: #dddddd;
-     }
+    tr:nth-child(even) {
+      background-color: #dddddd;  
+    }
   </style>>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -135,6 +129,8 @@
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
   <script>
 
     //initialize arguments(orderBy, ascending_flag)
@@ -175,51 +171,51 @@
             <ul>
               <li>
                 <a onclick="reloadTable('City_ID', 1)">City_ID</a>
-                <a onclick="reloadTable('City_ID', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('City_ID', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('Date', 1)">Date</a>
-                <a onclick="reloadTable('Date', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('Date', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('ID_Personal', 1)">ID_Personal</a>
-                <a onclick="reloadTable('ID_Personal', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('ID_Personal', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('ID_Type', 1)">ID_Type</a>
-                <a onclick="reloadTable('ID_Type', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('ID_Type', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('Is_Patient_Minor', 1)">Is_Patient_Minor</a>
-                <a onclick="reloadTable('Is_Patient_Minor', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('Is_Patient_Minor', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('LAT', 1)">LAT</a>
-                <a onclick="reloadTable('LAT', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('LAT', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('LON', 1)">LON</a>
-                <a onclick="reloadTable('LON', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('LON', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('N_Home_Visits', 1)">N_Home_Visits</a>
-                <a onclick="reloadTable('N_Home_Visits', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('N_Home_Visits', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('Patient_Age', 1)">Patient_Age</a>
-                <a onclick="reloadTable('Patient_Age', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('Patient_Age', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li> 
                 <a onclick="reloadTable('Time_Delay', 1)">Time_Delay</a>
-                <a onclick="reloadTable('Time_Delay', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('Time_Delay', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li> 
                 <a onclick="reloadTable('Visit_Status', 1)">Visit_Status</a>
-                <a onclick="reloadTable('Visit_Status', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('Visit_Status', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('Zipcode', 1)">Zip_Code</a>
-                <a onclick="reloadTable('Zipcode', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('Zipcode', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
             </ul>
           </li>
@@ -228,15 +224,15 @@
             <ul>
               <li>
                 <a onclick="reloadTable('City', 1)">City</a>
-                <a onclick="reloadTable('City', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('City', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('Geo_Point', 1)">GeoPoint</a>
-                <a onclick="reloadTable('Geo_Point', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('Geo_Point', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
               <li>
                 <a onclick="reloadTable('Pathology', 1)">Pathology</a>
-                <a onclick="reloadTable('Pathology', -1)"><i class="arrow down"></i></a>
+                <a onclick="reloadTable('Pathology', -1)"><i class="fas fa-sort-down"></i></a>
               </li>
             </ul>
           </li>
