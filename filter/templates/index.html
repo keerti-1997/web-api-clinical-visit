@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Medical Visits</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+  <script>
+
+    //initialize arguments(orderBy, ascending_flag)
+    //ascending_flag =  1 -> ascending
+    //ascending_flag = -1 -> descending
+    var orderBy = "City";
+    var ascending_flag = 1;
+
+    //used for sorting comparity
+    function locale(a, b) {
+      if (typeof(a[orderBy])  === "string") {
+        return ascending_flag * a[orderBy].localeCompare(b[orderBy]);
+      } else {
+        return ascending_flag * (a[orderBy] - b[orderBy]);
+      }
+    }; 
+
+  </script>
+  <script src='js/TableToJson.js'></script>
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"/>
+  <style>
+  table {
+      table-layout: auto;
+      width: 150%; 
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      font-size: 12px;
+  }
+
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+  </style>
+
+</head>
+
+<body>
+  
+  <div class = "container">
+    
+    <h1 align="center">Home Medical Visits</h1>
+
+    <table id="ex-table">
+      <tbody>
+        <thead>
+        <tr id="tr">
+          <th>City <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter1()"></i><br>
+            <div id="filterbox1" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox1" type="textbox"/>
+            </div>    
+          </th>
+          <th>City_ID <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter2()"></i>
+            <div id="filterbox2" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox2" type="textbox"/>
+            </div>    
+          </th> 
+
+          <th>Date <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter3()"></i>
+            <div id="filterbox3" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox3" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>ID_Personal <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter4()"></i>
+            <div id="filterbox4" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox4" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>ID_Type <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter5()"></i>
+            <div id="filterbox5" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox5" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>Is_Patient_Minor <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter6()"></i>
+            <div id="filterbox6" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox6" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>Latitude <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter7()"></i>
+            <div id="filterbox7" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox7" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>Longitude <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter8()"></i>
+            <div id="filterbox8" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox8" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>N_Home_Visits <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter9()">
+            <div id="filterbox9" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox9" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>Pathology <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter10()"></i>
+            <div id="filterbox10" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox10" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>Patient_Age <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter11()"></i>
+            <div id="filterbox11" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox11" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>Time_Delay <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter12()"></i>
+            <div id="filterbox12" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox12" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>Visit_Status <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter13()"></i>
+            <div id="filterbox13" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox13" type="textbox"/>
+            </div>    
+
+          </th>
+          <th>Zip_Code <i class="fa fa-filter" style="font-size:12px" onclick="displayFilter14()"></i>
+            <div id="filterbox14" style="display: inline-block;padding: 3px;">
+              Filter<br>
+              Contains <input id="txtBox14" type="textbox"/>
+            </div>    
+
+          </th>
+          <!-- <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
+        </tr>
+      </thead>
+      </tbody>
+    </table> 
+
+    <input type="button" id="btnConvert" value="Convert" class="btn btn-danger"> 
+
+  </div>
+
+</body>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyCHA3rBGSAdS4QXvXSOnjhSdxe4ek-R73c",
+    authDomain: "inf551-project-48265.firebaseapp.com",
+    databaseURL: "https://inf551-project-48265.firebaseio.com",
+    projectId: "inf551-project-48265",
+    storageBucket: "inf551-project-48265.appspot.com",
+    messagingSenderId: "886384796957",
+    appId: "1:886384796957:web:b5e62ee8c4b112acd8adf4",
+    measurementId: "G-5C2QT45TNQ"
+  };
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  console.log("initialized");
+  var value = document.getElementById("value");
+  var dbRef = firebase.database().ref().child("testdata");
+
+  function loadTable() 
+  {
+    dbRef.once('value', function(snapshot) 
+    {
+      if(snapshot.exists()) {
+        var arr = new Array();
+        snapshot.forEach(function(data) 
+        {
+          var val = data.val();
+          var tmp = new Object();
+          tmp["City"] = val.City;
+          tmp["City_ID"] = val.City_ID;
+          tmp["Date"] = val.Date;
+          tmp["ID_Personal"] = val.ID_Personal;
+          tmp["ID_Type"] = val.ID_Type;
+          tmp["Is_Patient_Minor"] = val.Is_Patient_Minor;
+          tmp["LAT"] = val.LAT;
+          tmp["LON"] = val.LON;
+          tmp["N_Home_Visits"] = val.N_Home_Visits;
+          tmp["Pathology"] = val.Pathology;
+          tmp["Patient_Age"] = val.Patient_Age;
+          tmp["Time_Delay"] = val.Time_Delay;
+          tmp["Geo_Point"] = val.Geo_Point;
+          tmp["Visit_Status"] = val.Visit_Status;
+          tmp["Zipcode"] = val.Zipcode;
+          // tmp["Geo_Point"] = val.Geo_Point;
+          arr.push(tmp);
+        });
+
+        arr.sort(locale);
+        console.log('Completed sorting');
+        var content = '';
+        for(var i in arr) 
+        {
+          content += '<tr>';
+          content += '<td>' + arr[i].City + '</td>';
+          content += '<td>' + arr[i].City_ID + '</td>';
+          content += '<td>' + arr[i].Date + '</td>';
+          content += '<td>' + arr[i].ID_Personal + '</td>';
+          content += '<td>' + arr[i].ID_Type + '</td>';
+          content += '<td>' + arr[i].Is_Patient_Minor + '</td>';
+          content += '<td>' + arr[i].LAT + '</td>';
+          content += '<td>' + arr[i].LON + '</td>';
+          content += '<td>' + arr[i].N_Home_Visits + '</td>';
+          content += '<td>' + arr[i].Pathology + '</td>';
+          content += '<td>' + arr[i].Patient_Age + '</td>';
+          content += '<td>' + arr[i].Time_Delay + '</td>';
+          content += '<td>' + arr[i].Visit_Status + '</td>';
+          content += '<td>' + arr[i].Zipcode + '</td>';
+          // content += '<td>' + arr[i].Geo_Point + '</td>';
+          content += '</tr>';
+        };
+        $('#ex-table').append(content);
+        }
+      });
+  };
+
+  function deleteTable() {
+    var tb = document.getElementById('ex-table');
+    var rowNum = tb.rows.length;
+    for (i = 1; i < rowNum; i++) {
+      tb.deleteRow(i);
+      rowNum = rowNum - 1;
+      i = i - 1;
+    }
+  };
+
+  //change arguments, delete odd table, and load new table  
+  function reloadTable(a, b) 
+  {
+    orderBy = a;
+    ascending_flag = b;
+    deleteTable();
+    loadTable();
+  };
+
+  loadTable();
+  var jsonified = "";
+  $(document).ready(function()
+  {
+      $("#filterbox1").hide()
+      $("#filterbox2").hide()
+      $("#filterbox3").hide()
+      $("#filterbox4").hide()
+      $("#filterbox5").hide()
+      $("#filterbox6").hide()
+      $("#filterbox7").hide()
+      $("#filterbox8").hide()
+      $("#filterbox9").hide()
+      $("#filterbox10").hide()
+      $("#filterbox11").hide()
+      $("#filterbox12").hide()
+      $("#filterbox13").hide()
+      $("#filterbox14").hide()
+
+      $('#btnConvert').click(function()
+      {
+          //$('#result').append(JSON.stringify(makeJsonFromTable('ex-table')))
+          //$('#result').show()
+          jsonified = JSON.stringify(makeJsonFromTable('ex-table')); 
+          console.log("Now ajax call");
+          $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                data : JSON.stringify({table:jsonified, col:"City", word : "Terrassa"}),
+                dataType: 'json',
+                url: 'http://127.0.0.1:5000/import_json',
+                success: function (e) 
+                {
+                  console.log(e);
+                  //  window.location = "http://127.0.0.1:5000/signUp";
+                },
+                error: function(error) 
+                {
+                  console.log(error);
+                }
+          }); 
+      }); 
+  });
+
+  function displayFilter1()
+  {
+
+    $("#filterbox1").show();
+  }
+
+  function displayFilter2()
+  {
+
+    $("#filterbox2").show();
+  }
+
+  function displayFilter3()
+  {
+
+    $("#filterbox3").show();
+  }
+
+  function displayFilter4()
+  {
+
+    $("#filterbox4").show();
+  }
+
+  function displayFilter5()
+  {
+
+    $("#filterbox5").show();
+  }
+
+  function displayFilter6()
+  {
+
+    $("#filterbox6").show();
+  }
+
+  function displayFilter7()
+  {
+
+    $("#filterbox7").show();
+  }
+
+  function displayFilter8()
+  {
+
+    $("#filterbox8").show();
+  }
+
+  function displayFilter9()
+  {
+
+    $("#filterbox9").show();
+  }
+
+  function displayFilter10()
+  {
+
+    $("#filterbox10").show();
+  }
+
+  function displayFilter11()
+  {
+
+    $("#filterbox11").show();
+  }
+
+  function displayFilter12()
+  {
+
+    $("#filterbox12").show();
+  }
+
+  function displayFilter13()
+  {
+
+    $("#filterbox13").show();
+  }
+
+  function displayFilter14()
+  {
+
+    $("#filterbox14").show();
+  }
+
+
+</script>
+</html>

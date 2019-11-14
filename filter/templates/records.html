@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+    <input type="button" id="btnConvert" value="Convert" class="btn btn-danger"> 
+    <p>{{ message }}</p>
+
+    <div id="filterbox" style="border-style: solid;display: inline-block;padding: 8px">
+        Filter<br><br>
+        <input id="txtBox" type="textbox"/>
+    </div>    
+<!--     <table border="1">
+        <thead>
+            <tr>
+                {% for col in colnames %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                {% for col in colnames %}
+                <td>{{ record[col] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> -->
+</body>
+<script type="text/javascript">
+      $(document).ready(function()
+      {
+      $('#btnConvert').click(function()
+      {
+          //jsonified = JSON.stringify(makeJsonFromTable('ex-table')) 
+          // alert(JSON.stringify(makeJsonFromTable('ex-table')))
+          console.log("Now ajax call");
+          $.ajax({
+                type: 'POST',
+                //contentType: 'application/json',
+                //data: jsonified,
+                //dataType: 'json',
+                url: 'http://127.0.0.1:5000/import_json',
+                success: function (e) 
+                {
+                  console.log("Done");
+                  //  window.location = "http://127.0.0.1:5000/signUp";
+                },
+                error: function(error) 
+                {
+                  console.log(error);
+                }
+          }); 
+      }); 
+  });
+
+</script>
+</html>
