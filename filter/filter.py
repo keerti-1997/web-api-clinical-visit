@@ -2,13 +2,17 @@ import pandas as pd
 import numpy as np 
 import json
 
-def filter_table(records,column,word):
+def filter_table(data):
 	
-	print("Column to filter ",column)
-	print("Word to filter ",word)
-	#print(type(data["value"]))
-	#print(data["value"])
-	df = pd.DataFrame(json.loads(records)['value'])
-	# if categorical
-	df_return = df[df[column].str.contains(word)]
-	return df_return
+	
+	records = pd.DataFrame(json.loads(data['table'])['value'])
+	queries = data['filters']
+	print(records.shape)
+	print("Number of queries :- ",len(queries))
+	temp = records
+	for q in queries:
+		col = q['col']
+		word = q['word']
+		df_filter = temp[temp[col]==word]
+		temp = df_filter	
+	return df_filter
