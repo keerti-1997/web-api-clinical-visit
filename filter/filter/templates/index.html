@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Medical Visits</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
+  <script src='js/TableToJson.js'></script>
+  <script src='js/src.js'></script>
+  
+</head>
+
+<body>
+  
+
+  <div class = "container">
+    
+    <h1 align="center">Home Medical Visits</h1>
+
+    <nav id="main_nav">
+    <ul>
+      <li>
+        <a href="" id="sortbutton">Filter</a>
+        <ul>
+          <li id="numerical">
+            <a href="">Numerical</a>
+            <ul>
+              <li><a>City_ID</a></li>
+              <li><a onclick="reloadTable('Date', 1)">Date</a></li>
+              <li><a onclick="reloadTable('ID_Personal', 1)">ID_Personal</a></li>
+              <li><a onclick="reloadTable('ID_Type', 1)">ID_Type</a></li>
+              <li><a onclick="reloadTable('Is_Patient_Minor', 1)">Is_Patient_Minor</a></li>
+              <li><a onclick="reloadTable('LAT', 1)">LAT</a></li>
+              <li><a onclick="reloadTable('LON', 1)">LON</a></li>
+              <li><a onclick="reloadTable('N_Home_Visits', 1)">N_Home_Visits</a></li>
+              <li><a onclick="reloadTable('Patient_Age', 1)">Patient_Age</a></li>
+              <li><a onclick="reloadTable('Time_Delay', 1)">Time_Delay</a></li>
+              <li><a onclick="reloadTable('Visit_Status', 1)">Visit_Status</a></li>
+              <li><a onclick="reloadTable('Zipcode', 1)">Zip_Code</a></li>
+            </ul>
+          </li>
+          <li id="non-numerical">
+            <a href="">Non-numerical</a>
+            <ul>
+              <li>City <span class="fa fa-filter" onclick="filter('Cityip')"></span>
+                <div id="Cityip"><input type="text"><input type="submit" onclick="submitted('Cityip')"></div>
+              </li>
+              <!-- <li onclick="filter('cityip')" id="city">GeoPoint<input type="text" id="cityip"></li> -->
+              <li>Pathology <span class="fa fa-filter" onclick="filter('Pathologyip')"></span>
+                <div id="Pathologyip"><input type="text"><input type="submit" onclick="submitted('Pathologyip')"></div>
+              </li>
+              
+            </ul>
+          </li>
+        </li>
+      </ul>
+    </nav>
+    <table id="ex-table">
+      <tbody>
+        <thead>
+        <tr>
+          <th>City</th>
+          <th>City_ID</th> 
+          <th>Date</th>
+          <th>ID_Personal</th>
+          <th>ID_Type</th>
+          <th>Is_Patient_Minor</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>N_Home_Visits</th>
+          <th>Pathology</th>
+          <th>Patient_Age</th>
+          <th>Time_Delay</th>
+          <th>Visit_Status</th>
+          <th>Zip_Code</th>
+          <!-- <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
+        </tr>
+      </thead>
+      </tbody>
+    </table> 
+
+    <table id="filtered-table" style="display: none">
+      <tbody>
+        <thead>
+        <tr>
+          <th>City</th>
+          <th>City_ID</th> 
+          <th>Date</th>
+          <th>ID_Personal</th>
+          <th>ID_Type</th>
+          <th>Is_Patient_Minor</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>N_Home_Visits</th>
+          <th>Pathology</th>
+          <th>Patient_Age</th>
+          <th>Time_Delay</th>
+          <th>Visit_Status</th>
+          <th>Zip_Code</th>
+         <!--  <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
+         </tr>
+      </thead>
+      </tbody>
+    </table>
+    <input type="button" id="btnConvert" value="Convert" class="btn btn-danger"> 
+
+  </div>
+
+</body>
+
+<script>
+
+</script>
+</html>
