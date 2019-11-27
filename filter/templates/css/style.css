@@ -80,7 +80,9 @@
       text-align: left;
       padding: 8px;
   }
-
+  th {
+      background-color: #FFEBCD;
+  }
   tr:nth-child(even) 
   {
       background-color: #dddddd;

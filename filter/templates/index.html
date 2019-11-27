@@ -53,18 +53,6 @@
                 </li>
                 <li>
                   <div class="row">
-                    <div class="col">Date</div>
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Dateip')"></span></div>
-                  </div>
-                  <div id="Dateip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('Dateip')">Clear</button>
-                    <input type="submit" onclick="submitted('Dateip')">
-                  </div>  
-                </li>
-                <li>
-                  <div class="row">
                     <div class="col">ID_Personal</div>  
                     <div class="col"><span class="fa fa-filter" onclick="filter('ID_Personalip')"></span></div>
                   </div>  
@@ -208,61 +196,50 @@
                     <input type="text">
                     <button onclick="cleared('Is_Patient_Minorip')">Clear</button>
                     <input type="submit" onclick="submitted('Is_Patient_Minorip')"></div>
-                </li>              
+                </li> 
+                <li>
+                  <div class="row">
+                    <div class="col">Date</div>
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Dateip')"></span></div>
+                  </div>
+                  <div id="Dateip">  
+                    <input type="text">
+                    <button onclick="cleared('Dateip')">Clear</button>
+                    <input type="submit" onclick="submitted('Dateip')"></div>
+                  </div>  
+                </li>
+
               </ul>
             </li>
           </li>
         </ul>
       </nav>
-      <table id="ex-table" class="scroll">
-        <tbody>
-          <thead>
-          <tr>
-            <th>City</th>
-            <th>City_ID</th> 
-            <th>Date</th>
-            <th>ID_Personal</th>
-            <th>ID_Type</th>
-            <th>Is_Patient_Minor</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>N_Home_Visits</th>
-            <th>Pathology</th>
-            <th>Patient_Age</th>
-            <th>Time_Delay</th>
-            <th>Visit_Status</th>
-            <th>Zip_Code</th>
-            <!-- <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
-          </tr>
-        </thead>
-        </tbody>
-      </table> 
-
-<!--       <table id="filtered-table" style="display: none">
-        <tbody>
-          <thead>
-          <tr>
-            <th>City</th>
-            <th>City_ID</th> 
-            <th>Date</th>
-            <th>ID_Personal</th>
-            <th>ID_Type</th>
-            <th>Is_Patient_Minor</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>N_Home_Visits</th>
-            <th>Pathology</th>
-            <th>Patient_Age</th>
-            <th>Time_Delay</th>
-            <th>Visit_Status</th>
-            <th>Zip_Code</th>
-           <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
-           <!-- </tr>
-        </thead>
-        </tbody>
-      </table> -->
-      <!-- <input type="button" id="btnConvert" value="Convert" class="btn btn-danger">  -->
-
+      
+      <div style="height:500px; overflow: auto" frame="box">
+        <table id="ex-table" class="scroll">
+          <tbody>
+            <thead>
+            <tr>
+              <th>City</th>
+              <th>City_ID</th> 
+              <th>Date</th>
+              <th>ID_Personal</th>
+              <th>ID_Type</th>
+              <th>Is_Patient_Minor</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>N_Home_Visits</th>
+              <th>Pathology</th>
+              <th>Patient_Age</th>
+              <th>Time_Delay</th>
+              <th>Visit_Status</th>
+              <th>Zip_Code</th>
+              <!-- <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
+            </tr>
+          </thead>
+          </tbody>
+        </table> 
+      </div>
     </div>
   </div>  
 </body>

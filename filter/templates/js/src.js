@@ -113,8 +113,8 @@
   var filter_list = [];
   var numeric = [];
   var submit_click = 0;
-  var categorical = ["Cityip","Pathologyip","Is_Patient_Minorip"];
-  var numerical = ["City_IDip","Dateip","ID_Personalip","ID_Typeip","Latitudeip","Longitudeip","N_Home_Visitsip","Patient_Ageip","Time_Delayip","Visit_Statusip","Zip_Codeip"]
+  var categorical = ["Cityip","Pathologyip","Is_Patient_Minorip","Dateip"];
+  var numerical = ["City_IDip","ID_Personalip","ID_Typeip","Latitudeip","Longitudeip","N_Home_Visitsip","Patient_Ageip","Time_Delayip","Visit_Statusip","Zip_Codeip"]
   var type_of_filter;
   var filter_clicks = {};
   var submit_clicks = 0;
@@ -130,6 +130,13 @@
   function filter(id)
   {
     console.log("in filter");
+    for (var c in categorical)
+      if(categorical[c] != id)
+        document.getElementById(categorical[c]).style.display = "none";
+    for (var c in numerical)
+      if(numerical[c] != id)
+        document.getElementById(numerical[c]).style.display = "none";
+
     if(filter_clicks[id] % 2 == 0) 
       document.getElementById(id).style.display = "block";
     else
@@ -137,16 +144,6 @@
     filter_clicks[id] += 1
   }
 
-  function stoppedTyping(id)
-  {
-    if(this.value.length > 0) 
-    { 
-        document.getElementById(id).disabled = false; 
-    } 
-    else { 
-        document.getElementById(id).disabled = true;
-    }
-  }
 
   function cleared(id)
   {
@@ -186,7 +183,6 @@
       min = document.getElementById(id).children[0].value;
       max = document.getElementById(id).children[1].value; 
     
-
       num['col'] = col;
       num['range'] = {'min':min,'max':max};
       filter_list.push(num);
