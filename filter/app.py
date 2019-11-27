@@ -21,13 +21,6 @@ def import_json():
 		print("JSON submitting for filtering")
 		filtered = filter_table(data)
 		print(filtered)
-	# 	#return jsonify(df_return)
-	# 	#return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
-	# 	#temp = df_return.to_dict('records')
-	# 	#columnNames = df_return.columns.valueso
-	# 	#print(columnNames)
-	# 	#return render_template('records.html', message = "testing!!",records=temp, colnames=columnNames)
-	#return render_template('index.html',data=filtered.to_json())
 	return jsonify(filtered.to_dict(orient='records'))
 
 if __name__ == "__main__":

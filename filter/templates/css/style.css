@@ -69,6 +69,13 @@
       padding: 8px;
   }
 
-  tr:nth-child(even) {
+  tr:nth-child(even) 
+  {
       background-color: #dddddd;
+  }
+
+  #Cityip, #Pathologyip,#Is_Patient_Minorip,#City_IDip
+  {
+    position:relative;
+    display: none;
   }

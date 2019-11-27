@@ -36,29 +36,46 @@
       <li>
         <a href="" id="sortbutton">Filter</a>
         <ul>
-          <li>
+          <li id="numerical">
             <a href="">Numerical</a>
             <ul>
-              <li><a onclick="reloadTable('City_ID', 1)">City_ID</a></li>
-              <li><a onclick="reloadTable('Date', 1)">Date</a></li>
-              <li><a onclick="reloadTable('ID_Personal', 1)">ID_Personal</a></li>
-              <li><a onclick="reloadTable('ID_Type', 1)">ID_Type</a></li>
-              <li><a onclick="reloadTable('Is_Patient_Minor', 1)">Is_Patient_Minor</a></li>
-              <li><a onclick="reloadTable('LAT', 1)">LAT</a></li>
-              <li><a onclick="reloadTable('LON', 1)">LON</a></li>
-              <li><a onclick="reloadTable('N_Home_Visits', 1)">N_Home_Visits</a></li>
-              <li><a onclick="reloadTable('Patient_Age', 1)">Patient_Age</a></li>
-              <li><a onclick="reloadTable('Time_Delay', 1)">Time_Delay</a></li>
-              <li><a onclick="reloadTable('Visit_Status', 1)">Visit_Status</a></li>
-              <li><a onclick="reloadTable('Zipcode', 1)">Zip_Code</a></li>
+              <li>City_ID <span class="fa fa-filter" onclick="filter('City_IDip')"></span>
+                <div id="City_IDip">  
+                  Enter Min <input type="text">
+                  Enter Max <input type="text">
+                  <button onclick="cleared('City_IDip')">Clear</button>
+                  <input type="submit" onclick="submitted('City_IDip')">
+                </div>  
+              </li>
+              <li>Date</li>
+              <li>ID_Personal</li>
+              <li>ID_Type</li>
+              <li>Latitude</li>
+              <li>Longitude</li>
+              <li>N_Home_Visits</li>
+              <li>Patient_Age</li>
+              <li>Time_Delay</li>
+              <li>Visit_Status</li>
+              <li>Zip_Code</li>
             </ul>
           </li>
-          <li>
+          <li id="non-numerical">
             <a href="">Non-numerical</a>
             <ul>
-              <li><a onclick="reloadTable('City', 1)">City</a></li>
-              <li><a onclick="reloadTable('Geo_Point', 1)">GeoPoint</a></li>
-              <li><a onclick="reloadTable('Pathology', 1)">Pathology</a></li>
+              <li>City <span class="fa fa-filter" onclick="filter('Cityip')"></span>
+                <div id="Cityip">
+                  <input type="text">
+                  <button onclick="cleared('Cityip')">Clear</button>
+                  <input type="submit" onclick="submitted('Cityip')">
+                </div>
+              </li>
+              <!-- <li onclick="filter('cityip')" id="city">GeoPoint<input type="text" id="cityip"></li> -->
+              <li>Pathology <span class="fa fa-filter" onclick="filter('Pathologyip')"></span>
+                <div id="Pathologyip"><input type="text"><input type="submit" onclick="submitted('Pathologyip')"></div>
+              </li>
+              <li>Is_Patient_Minor <span class="fa fa-filter" onclick="filter('Is_Patient_Minorip')"></span>
+                <div id="Is_Patient_Minorip"><input type="text"><input type="submit" onclick="submitted('Is_Patient_Minorip')"></div>
+              </li>              
             </ul>
           </li>
         </li>
@@ -111,7 +128,7 @@
       </thead>
       </tbody>
     </table>
-    <input type="button" id="btnConvert" value="Convert" class="btn btn-danger"> 
+    <!-- <input type="button" id="btnConvert" value="Convert" class="btn btn-danger">  -->
 
   </div>
 
