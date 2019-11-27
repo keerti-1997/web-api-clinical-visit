@@ -18,9 +18,10 @@ def import_json():
 	if request.method == 'POST':
 		data = request.json
 		print(data)
+		print(pd.DataFrame(json.loads(data['table'])['value']).head())
 		print("JSON submitting for filtering")
 		filtered = filter_table(data)
-		print(filtered)
+		print("Filtered table shape",filtered.shape)
 	return jsonify(filtered.to_dict(orient='records'))
 
 if __name__ == "__main__":

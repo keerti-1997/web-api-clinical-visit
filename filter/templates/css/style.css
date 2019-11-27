@@ -1,14 +1,14 @@
-      #sortbutton {
-      background-color: #6c757d;
-    }
-    #main_nav ul {
+
+    #main_nav ul 
+    {
       background: white;
       float: left;
       -webkit-transition: .5s;
       transition: .5s;
     }
   
-    #main_nav li {
+    #main_nav li 
+    {
       float: left;
       position: relative;
       width: 200px;
@@ -17,7 +17,8 @@
       transition: .5s;
     }
   
-    #main_nav > ul > li > a, h1 {
+    #main_nav > ul > li > a, h1 
+    {
       text-transform: uppercase;
     }
   
@@ -25,8 +26,16 @@
       display: block;
       text-decoration: none;
       padding: 5px 15px;
-      color: #000;
+      color: #RGB;
     }
+
+    #sortbutton, #reset {
+      padding: 5px 15px;
+      color: #FFF;
+      height: 36px;
+      font-style: Lucida Console;
+    }
+ 
     #main_nav ul ul {
       position: absolute;
       left: 0;
@@ -54,8 +63,11 @@
     #main_nav li:hover > ul {
       visibility: visible;
       opacity: 1;
-    }  
-  table {
+    } 
+    h1 {
+      font-family: cursive;
+    } 
+  #ex-table {
       table-layout: auto;
       width: 150%; 
       font-family: arial, sans-serif;
@@ -74,8 +86,15 @@
       background-color: #dddddd;
   }
 
-  #Cityip, #Pathologyip,#Is_Patient_Minorip,#City_IDip
+  #Cityip, #Pathologyip,#Is_Patient_Minorip
   {
     position:relative;
     display: none;
   }
+  #City_IDip,#Dateip,#ID_Personalip,#ID_Typeip,#Latitudeip,#Longitudeip,#N_Home_Visitsip,#Patient_Ageip,#Time_Delayip,#Visit_Statusip,#Zip_Codeip
+  {
+    position:relative;
+    display: none; 
+  }
+
+  

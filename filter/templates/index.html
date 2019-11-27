@@ -25,116 +25,246 @@
 </head>
 
 <body>
-  
-
   <div class = "container">
-    
-    <h1 align="center">Home Medical Visits</h1>
-
-    <nav id="main_nav">
-    <ul>
-      <li>
-        <a href="" id="sortbutton">Filter</a>
-        <ul>
-          <li id="numerical">
-            <a href="">Numerical</a>
-            <ul>
-              <li>City_ID <span class="fa fa-filter" onclick="filter('City_IDip')"></span>
-                <div id="City_IDip">  
-                  Enter Min <input type="text">
-                  Enter Max <input type="text">
-                  <button onclick="cleared('City_IDip')">Clear</button>
-                  <input type="submit" onclick="submitted('City_IDip')">
-                </div>  
-              </li>
-              <li>Date</li>
-              <li>ID_Personal</li>
-              <li>ID_Type</li>
-              <li>Latitude</li>
-              <li>Longitude</li>
-              <li>N_Home_Visits</li>
-              <li>Patient_Age</li>
-              <li>Time_Delay</li>
-              <li>Visit_Status</li>
-              <li>Zip_Code</li>
-            </ul>
+    <div class="row justify-content-center align-items-center">
+      <h1>Home Medical Visits</h1>
+    </div>
+    <div class="row">
+      <a href="index.html" class="btn btn-primary" id="reset"><b>RESET</b></a>
+      <nav id="main_nav">
+      <ul>
+        <li>
+          <a href="" id="sortbutton" class="btn btn-primary"><b>Filter</b></a>
+          <ul>
+            <li id="numerical">
+              <a>Numerical</a>
+              <ul>
+                <li>
+                  <div class="row">
+                    <div class="col">City_ID</div>
+                    <div class="col"><span class="fa fa-filter" onclick="filter('City_IDip')"></span></div>
+                  </div>  
+                  <div id="City_IDip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('City_IDip')">Clear</button>
+                    <input type="submit" onclick="submitted('City_IDip')">
+                  </div>  
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col">Date</div>
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Dateip')"></span></div>
+                  </div>
+                  <div id="Dateip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('Dateip')">Clear</button>
+                    <input type="submit" onclick="submitted('Dateip')">
+                  </div>  
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col">ID_Personal</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('ID_Personalip')"></span></div>
+                  </div>  
+                  <div id="ID_Personalip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('ID_Personalip')">Clear</button>
+                    <input type="submit" onclick="submitted('ID_Personalip')">
+                  </div>  
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col">ID_Type</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('ID_Typeip')"></span></div>
+                  </div>
+                  <div id="ID_Typeip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('ID_Typeip')">Clear</button>
+                    <input type="submit" onclick="submitted('ID_Typeip')">
+                  </div>  
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col">Latitude</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Latitudeip')"></span></div>
+                  </div>
+                  <div id="Latitudeip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('Latitudeip')">Clear</button>
+                    <input type="submit" onclick="submitted('Latitudeip')">
+                  </div>  
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col">Longitude</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Longitudeip')"></span></div>
+                  </div>
+                  <div id="Longitudeip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('Longitudeip')">Clear</button>
+                    <input type="submit" onclick="submitted('Longitudeip')">
+                  </div>  
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col">N_Visits</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('N_Home_Visitsip')"></span></div>
+                  </div>
+                  <div id="N_Home_Visitsip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('N_Home_Visitsip')">Clear</button>
+                    <input type="submit" onclick="submitted('N_Home_Visitsip')">
+                  </div>  
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col">Patient_Age</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Patient_Ageip')"></span></div>
+                  </div>
+                  <div id="Patient_Ageip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('Patient_Ageip')">Clear</button>
+                    <input type="submit" onclick="submitted('Patient_Ageip')">
+                  </div> 
+                </li>
+                <li>
+                <div class="row">                    
+                  <div class="col">Time_Delay</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Time_Delayip')"></span></div>
+                  </div>
+                  <div id="Time_Delayip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('Time_Delayip')">Clear</button>
+                    <input type="submit" onclick="submitted('Time_Delayip')">
+                  </div>
+                </li>
+                <li>
+                  <div class="row">                    
+                    <div class="col">Visit_Status</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Visit_Statusip')"></span></div>
+                  </div>
+                  <div id="Visit_Statusip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('Visit_Statusip')">Clear</button>
+                    <input type="submit" onclick="submitted('Visit_Statusip')">
+                  </div>
+                </li>
+                <li>
+                  <div class="row">                    
+                    <div class="col">Zip_Code</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Zip_Codeip')"></span></div>
+                  </div>                  
+                  <div id="Zip_Codeip">  
+                    Enter Min <input type="text">
+                    Enter Max <input type="text">
+                    <button onclick="cleared('Zip_Codeip')">Clear</button>
+                    <input type="submit" onclick="submitted('Zip_Codeip')">
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li id="non-numerical">
+              <a>Categorical</a>
+              <ul>
+                <li>
+                    <div class="row">                    
+                      <div class="col">City</div>  
+                      <div class="col"><span class="fa fa-filter" onclick="filter('Cityip')"></span></div>
+                  </div>
+                  <div id="Cityip">
+                    <input type="text">
+                    <button onclick="cleared('Cityip')">Clear</button>
+                    <input type="submit" onclick="submitted('Cityip')">
+                  </div>
+                </li>
+                <!-- <li onclick="filter('cityip')" id="city">GeoPoint<input type="text" id="cityip"></li> -->
+                <li>
+                    <div class="row">                    
+                      <div class="col">Pathology</div>  
+                      <div class="col"><span class="fa fa-filter" onclick="filter('Pathologyip')"></span></div>
+                  </div>
+                  <div id="Pathologyip">
+                    <input type="text">
+                    <button onclick="cleared('Pathologyip')">Clear</button>
+                    <input type="submit" onclick="submitted('Pathologyip')">
+                  </div>
+                </li>
+                <li>
+                  <div class="row">                    
+                    <div class="col">Minority</div>  
+                    <div class="col"><span class="fa fa-filter" onclick="filter('Is_Patient_Minorip')"></span></div>
+                  </div>
+                  <div id="Is_Patient_Minorip">
+                    <input type="text">
+                    <button onclick="cleared('Is_Patient_Minorip')">Clear</button>
+                    <input type="submit" onclick="submitted('Is_Patient_Minorip')"></div>
+                </li>              
+              </ul>
+            </li>
           </li>
-          <li id="non-numerical">
-            <a href="">Non-numerical</a>
-            <ul>
-              <li>City <span class="fa fa-filter" onclick="filter('Cityip')"></span>
-                <div id="Cityip">
-                  <input type="text">
-                  <button onclick="cleared('Cityip')">Clear</button>
-                  <input type="submit" onclick="submitted('Cityip')">
-                </div>
-              </li>
-              <!-- <li onclick="filter('cityip')" id="city">GeoPoint<input type="text" id="cityip"></li> -->
-              <li>Pathology <span class="fa fa-filter" onclick="filter('Pathologyip')"></span>
-                <div id="Pathologyip"><input type="text"><input type="submit" onclick="submitted('Pathologyip')"></div>
-              </li>
-              <li>Is_Patient_Minor <span class="fa fa-filter" onclick="filter('Is_Patient_Minorip')"></span>
-                <div id="Is_Patient_Minorip"><input type="text"><input type="submit" onclick="submitted('Is_Patient_Minorip')"></div>
-              </li>              
-            </ul>
-          </li>
-        </li>
-      </ul>
-    </nav>
-    <table id="ex-table">
-      <tbody>
-        <thead>
-        <tr>
-          <th>City</th>
-          <th>City_ID</th> 
-          <th>Date</th>
-          <th>ID_Personal</th>
-          <th>ID_Type</th>
-          <th>Is_Patient_Minor</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-          <th>N_Home_Visits</th>
-          <th>Pathology</th>
-          <th>Patient_Age</th>
-          <th>Time_Delay</th>
-          <th>Visit_Status</th>
-          <th>Zip_Code</th>
-          <!-- <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
-        </tr>
-      </thead>
-      </tbody>
-    </table> 
+        </ul>
+      </nav>
+      <table id="ex-table" class="scroll">
+        <tbody>
+          <thead>
+          <tr>
+            <th>City</th>
+            <th>City_ID</th> 
+            <th>Date</th>
+            <th>ID_Personal</th>
+            <th>ID_Type</th>
+            <th>Is_Patient_Minor</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>N_Home_Visits</th>
+            <th>Pathology</th>
+            <th>Patient_Age</th>
+            <th>Time_Delay</th>
+            <th>Visit_Status</th>
+            <th>Zip_Code</th>
+            <!-- <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
+          </tr>
+        </thead>
+        </tbody>
+      </table> 
 
-    <table id="filtered-table" style="display: none">
-      <tbody>
-        <thead>
-        <tr>
-          <th>City</th>
-          <th>City_ID</th> 
-          <th>Date</th>
-          <th>ID_Personal</th>
-          <th>ID_Type</th>
-          <th>Is_Patient_Minor</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-          <th>N_Home_Visits</th>
-          <th>Pathology</th>
-          <th>Patient_Age</th>
-          <th>Time_Delay</th>
-          <th>Visit_Status</th>
-          <th>Zip_Code</th>
-         <!--  <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
-         </tr>
-      </thead>
-      </tbody>
-    </table>
-    <!-- <input type="button" id="btnConvert" value="Convert" class="btn btn-danger">  -->
+<!--       <table id="filtered-table" style="display: none">
+        <tbody>
+          <thead>
+          <tr>
+            <th>City</th>
+            <th>City_ID</th> 
+            <th>Date</th>
+            <th>ID_Personal</th>
+            <th>ID_Type</th>
+            <th>Is_Patient_Minor</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>N_Home_Visits</th>
+            <th>Pathology</th>
+            <th>Patient_Age</th>
+            <th>Time_Delay</th>
+            <th>Visit_Status</th>
+            <th>Zip_Code</th>
+           <th>GeoPoint <i class="fa fa-filter" style="font-size:12px"></th> -->
+           <!-- </tr>
+        </thead>
+        </tbody>
+      </table> -->
+      <!-- <input type="button" id="btnConvert" value="Convert" class="btn btn-danger">  -->
 
-  </div>
-
+    </div>
+  </div>  
 </body>
 
-<script>
-
-</script>
 </html>

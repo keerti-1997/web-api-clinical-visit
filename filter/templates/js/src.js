@@ -87,7 +87,8 @@
       });
   };
 
-  function deleteTable() {
+  function deleteTable() 
+  {
     var tb = document.getElementById('ex-table');
     var rowNum = tb.rows.length;
     for (i = 1; i < rowNum; i++) {
@@ -109,116 +110,107 @@
   loadTable();
   
   var jsonified = "";
-  $(document).ready(function()
-  {
-      $('#btnConvert').click(function()
-      {
-          //$('#result').append(JSON.stringify(makeJsonFromTable('ex-table')))
-          //$('#result').show()
-          jsonified = JSON.stringify(makeJsonFromTable('ex-table')); 
-          input = JSON.stringify({table:jsonified,filters:[{col:"City",word:"Terrassa"}]}),
-          //console.log(input);
-          console.log("Now ajax call");
-          $.ajax({
-                type: 'POST',
-                contentType: 'application/json',
-                data : input,
-                dataType: 'json',
-                url: 'http://127.0.0.1:5000/import_json',
-                success: function (data) 
-                {
-                  console.log("success");
-                  console.log(data);
-                  var filtered = ""
-                  for(var i in data)
-                  {
-                    console.log(data[i])
-
-                    filtered += '<tr>';
-                    filtered += '<td>' + data[i].City + '</td>';
-                    filtered += '<td>' + data[i].City_ID + '</td>';
-                    filtered += '<td>' + data[i].Date + '</td>';
-                    filtered += '<td>' + data[i].ID_Personal + '</td>';
-                    filtered += '<td>' + data[i].ID_Type + '</td>';
-                    filtered += '<td>' + data[i].Is_Patient_Minor + '</td>';
-                    filtered += '<td>' + data[i].Latitude + '</td>';
-                    filtered += '<td>' + data[i].Longitude + '</td>';
-                    filtered += '<td>' + data[i].N_Home_Visits + '</td>';
-                    filtered += '<td>' + data[i].Pathology + '</td>';
-                    filtered += '<td>' + data[i].Patient_Age + '</td>';
-                    filtered += '<td>' + data[i].Time_Delay + '</td>';
-                    filtered += '<td>' + data[i].Visit_Status + '</td>';
-                    filtered += '<td>' + data[i].Zip_Code + '</td>';
-                    // content += '<td>' + arr[i].Geo_Point + '</td>';
-                    filtered += '</tr>'; 
-                  } 
-                  $('#filtered-table').append(filtered);
-                  $('#ex-table').hide();
-                  $('#filtered-table').show();                  
-                },
-
-                error: function(error) 
-                {
-                  console.log(error);
-                  alert(error)
-                }
-          }); 
-      }); 
-  });
-
-  var filter_list = []
-  var submit_click = 0
-  var categorical = ["Cityip","Pathologyip","Is_Patient_Minorip"]
+  var filter_list = [];
+  var numeric = [];
+  var submit_click = 0;
+  var categorical = ["Cityip","Pathologyip","Is_Patient_Minorip"];
   var numerical = ["City_IDip","Dateip","ID_Personalip","ID_Typeip","Latitudeip","Longitudeip","N_Home_Visitsip","Patient_Ageip","Time_Delayip","Visit_Statusip","Zip_Codeip"]
   var type_of_filter;
+  var filter_clicks = {};
+  var submit_clicks = 0;
+
+
+  for(var n in categorical)
+    filter_clicks[categorical[n]] = 0
+  for(var n in numerical)
+    filter_clicks[numerical[n]] = 0
+
+  //console.log(filter_clicks)
 
   function filter(id)
   {
     console.log("in filter");
+    if(filter_clicks[id] % 2 == 0) 
       document.getElementById(id).style.display = "block";
+    else
+      document.getElementById(id).style.display = "none";
+    filter_clicks[id] += 1
+  }
+
+  function stoppedTyping(id)
+  {
+    if(this.value.length > 0) 
+    { 
+        document.getElementById(id).disabled = false; 
+    } 
+    else { 
+        document.getElementById(id).disabled = true;
+    }
   }
 
   function cleared(id)
   {
-    console.log(document.getElementById(id).children[0].value);
-    document.getElementById(id).children[0].value = "";
+    if(numerical.indexOf(id) > -1)
+    {
+      document.getElementById(id).children[0].value = "";
+      document.getElementById(id).children[1].value = "";    
+    }
+    if(categorical.indexOf(id) > -1)
+      document.getElementById(id).children[0].value = "";
+
+    //$("#filtered").hide();
+    //$("#ex-table").show();
   }
 
 
   function submitted(id)
   { 
+    //deleteTable();
+    //loadTable();
+    // if(submit_clicks != 0)
+    //   jsonified = JSON.stringify(makeJsonFromTable('filtered-table'));
+    // 
+
     jsonified = JSON.stringify(makeJsonFromTable('ex-table'));
+    
     var filt = {};
+    var num = {};
     var input = {};
     console.log("in submitted")
     console.log(id.slice(0,-2));
     col = id.slice(0,-2);
-    //console.log(categorical.indexOf(id))
 
     if(numerical.indexOf(id) > -1)
     {
       type_of_filter = 1
       min = document.getElementById(id).children[0].value;
-      max = document.getElementById(id).children[1].value;
-      filt['col'] = col;
-      filt['range'] = {'min':min,'max':max};
-      filter_list.push(filt);
-      input = JSON.stringify({table:jsonified,filters:filter_list,type:type_of_filter});
-      console.log(input);
+      max = document.getElementById(id).children[1].value; 
+    
+
+      num['col'] = col;
+      num['range'] = {'min':min,'max':max};
+      filter_list.push(num);
+      input = JSON.stringify({table:jsonified,filters:num,type:type_of_filter});
     }
 
     if(categorical.indexOf(id) > -1) 
     {
       type_of_filter = 0
       word = document.getElementById(id).children[0].value;
+      if(word.length > 0)
+        document.getElementById(id).children[2].disabled = false;
+      else
+        document.getElementById(id).children[2].disabled = true;
+
+
       filt['col'] = col;
       filt['word'] = word;
-      filter_list.push(filt)
-      console.log(filter_list);
-      input = JSON.stringify({table:jsonified,filters:filter_list,type:type_of_filter});
-      console.log(input);
-    }  
-     
+      filter_list.push(filt);
+      input = JSON.stringify({table:jsonified,filters:filt,type:type_of_filter});
+      //console.log(filter_list);
+    }
+    
+    console.log(input);   
     console.log("Now ajax call");
     $.ajax({
           type: 'POST',
@@ -230,7 +222,9 @@
           {
             console.log("success");
             console.log(data);
-            var filtered = ""
+            var filtered = "";
+            var count = 0;
+
             for(var i in data)
             {
               console.log(data[i])
@@ -252,10 +246,14 @@
               filtered += '<td>' + data[i].Zip_Code + '</td>';
               // content += '<td>' + arr[i].Geo_Point + '</td>';
               filtered += '</tr>'; 
+              count += 1;
             } 
-            $('#filtered-table').append(filtered);
-            $('#ex-table').hide();
-            $('#filtered-table').show();                  
+            console.log("Length of the result ",count);
+            //$('#filtered-table').append(filtered);
+            //$('#ex-table').hide();
+            //$('#filtered-table').show(); 
+            $('#ex-table tbody tr').remove();
+            $('#ex-table').append(filtered);                 
           },
 
           error: function(error) 
@@ -263,5 +261,6 @@
             console.log(error);
             alert(error)
           }
-    });     
+    }); 
+    submit_clicks += 1;    
   }

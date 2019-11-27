@@ -8,20 +8,23 @@ def filter_table(data):
 	records = pd.DataFrame(json.loads(data['table'])['value'])
 	queries = data['filters']
 	type_of_filter = data['type']
-
+	#num_queries = data['num_list']
 
 	print(records.shape)
-	print("Number of queries :- ",len(queries))
+	#print("Number of queries :- ",len(queries))
+	
+	col = queries['col']
+	temp = records
+
 	# categorical
 	if type_of_filter == 0:
-		temp = records
-		for q in queries:
-			col = q['col']
-			word = q['word']
-			df_filter = temp[temp[col].str.contains(word, case=False)]
-			temp = df_filter
 
-	#print(records.dtypes)
+		#for q in queries:			
+		word = queries['word']
+		df_filter = temp[temp[col].str.contains(word, case=False)]
+		temp = df_filter
+    
+    # numerical
 	if type_of_filter == 1:
 		
 		records["City_ID"] = records["City_ID"].astype(str).astype(int)
@@ -34,12 +37,13 @@ def filter_table(data):
 		records["Visit_Status"] = records["Visit_Status"].astype(str).astype(int)
 		records["Zip_Code"] = records["Zip_Code"].astype(str).astype(int)
 
-		temp = records
-		for q in queries:
-			col = q['col']
-			min_range = int(q['range']['min'])
-			max_range = int(q['range']['max'])
-			print(col,min_range,max_range,type(min_range),type(max_range))
-			df_filter = temp[(temp[col]>=min_range)&(temp[col]<=max_range)]
-			temp = df_filter	
+		#temp = records
+		#for q in queries:
+		col = queries['col']
+		min_range = int(queries['range']['min'])
+		max_range = int(queries['range']['max'])
+		print(col,min_range,max_range,type(min_range),type(max_range))
+		df_filter = temp[(temp[col]>=min_range)&(temp[col]<=max_range)]
+		temp = df_filter	
+
 	return df_filter
