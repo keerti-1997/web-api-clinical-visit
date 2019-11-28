@@ -133,9 +133,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
   <script>
 
-    //initialize arguments(orderBy, ascending_flag)
-    //ascending_flag =  1 -> ascending
-    //ascending_flag = -1 -> descending
+    //initialize arguments(orderBy, ascending_flag) ascending_flag =  1 -> ascending / ascending_flag = -1 -> descending
     var orderBy = "City";
     var ascending_flag = 1;
 
@@ -157,10 +155,6 @@
     
     <h1 align="center">Home Medical Visits</h1>
 
-<!--     <button class="btn btn-primary" onclick="reloadTable('City', 1)">City</button>
-    <button class="btn btn-primary" onclick="reloadTable('City', -1)">City(Des)</button>
-    <button class="btn btn-primary" onclick="reloadTable('City_ID', 1)">CityID</button>
-    <button class="btn btn-primary" onclick="reloadTable('City_ID', -1)">CityID(Des)</button> -->
     <nav id="main_nav">
     <ul>
       <li>
@@ -170,52 +164,100 @@
             <a href="">Numerical</a>
             <ul>
               <li>
-                <a onclick="reloadTable('City_ID', 1)">City_ID</a>
-                <a onclick="reloadTable('City_ID', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >City_ID
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('City_ID', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('City_ID', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('Date', 1)">Date</a>
-                <a onclick="reloadTable('Date', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >Date
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Date', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Date', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('ID_Personal', 1)">ID_Personal</a>
-                <a onclick="reloadTable('ID_Personal', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >ID_Personal
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('ID_Personal', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('ID_Personal', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('ID_Type', 1)">ID_Type</a>
-                <a onclick="reloadTable('ID_Type', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >ID_Type
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('ID_Type', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('ID_Type', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('Is_Patient_Minor', 1)">Is_Patient_Minor</a>
-                <a onclick="reloadTable('Is_Patient_Minor', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >Is_Patient_Minor
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Is_Patient_Minor', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Is_Patient_Minor', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('LAT', 1)">LAT</a>
-                <a onclick="reloadTable('LAT', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >LAT
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('LAT', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('LAT', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('LON', 1)">LON</a>
-                <a onclick="reloadTable('LON', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >LON
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('LON', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('LON', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('N_Home_Visits', 1)">N_Home_Visits</a>
-                <a onclick="reloadTable('N_Home_Visits', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >N_Home_Visits
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('N_Home_Visits', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('N_Home_Visits', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('Patient_Age', 1)">Patient_Age</a>
-                <a onclick="reloadTable('Patient_Age', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >Patient_Age
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Patient_Age', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Patient_Age', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li> 
-                <a onclick="reloadTable('Time_Delay', 1)">Time_Delay</a>
-                <a onclick="reloadTable('Time_Delay', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >Time_Delay
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Time_Delay', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Time_Delay', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li> 
-                <a onclick="reloadTable('Visit_Status', 1)">Visit_Status</a>
-                <a onclick="reloadTable('Visit_Status', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >Visit_Status
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Visit_Status', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Visit_Status', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('Zipcode', 1)">Zip_Code</a>
-                <a onclick="reloadTable('Zipcode', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >Zipcode
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Zipcode', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Zipcode', -1)"></i>
+                  </span>
+                </a>
               </li>
             </ul>
           </li>
@@ -223,16 +265,28 @@
             <a href="">Non-numerical</a>
             <ul>
               <li>
-                <a onclick="reloadTable('City', 1)">City</a>
-                <a onclick="reloadTable('City', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >City
+                  <span style="float:right">
+                    <i class="fas fa-sort-alpha-down" onclick="reloadTable('City', 1)"></i>
+                    <i class="fas fa-sort-alpha-up-alt" onclick="reloadTable('City', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('Geo_Point', 1)">GeoPoint</a>
-                <a onclick="reloadTable('Geo_Point', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >Geo_Point
+                  <span style="float:right">
+                    <i class="fas fa-sort-alpha-down" onclick="reloadTable('Geo_Point', 1)"></i>
+                    <i class="fas fa-sort-alpha-up-alt" onclick="reloadTable('Geo_Point', -1)"></i>
+                  </span>
+                </a>
               </li>
               <li>
-                <a onclick="reloadTable('Pathology', 1)">Pathology</a>
-                <a onclick="reloadTable('Pathology', -1)"><i class="fas fa-sort-down"></i></a>
+                <a >Pathology
+                  <span style="float:right">
+                    <i class="fas fa-sort-alpha-down" onclick="reloadTable('Pathology', 1)"></i>
+                    <i class="fas fa-sort-alpha-up-alt" onclick="reloadTable('Pathology', -1)"></i>
+                  </span>
+                </a>
               </li>
             </ul>
           </li>
@@ -309,6 +363,7 @@
       <tbody>
         <thead>
           <tr id="tr">
+            <th>Row#</th>
             <th>City</th>
             <th>City_ID</th> 
             <th>Date</th>
@@ -328,7 +383,7 @@
         </thead>
       </tbody>
     </table> 
-
+    <a onclick="add500Rows()" style="color:rgba(0,0,255)">Show more 500 rows (Total: 40079)</a>
   </div>
 
 </body>
@@ -349,11 +404,12 @@
   console.log("initialized");
   var value = document.getElementById("value");
   var dbRef = firebase.database().ref().child("testdata");
+  var arr = new Array();
+  var count = 0;
 
   function loadTable() {
     dbRef.once('value', function(snapshot) {
       if(snapshot.exists()) {
-        var arr = new Array();
         snapshot.forEach(function(data) {
           var val = data.val();
           var tmp = new Object();
@@ -377,30 +433,38 @@
 
         arr.sort(locale);
         console.log('Completed sorting');
-        var content = '';
-        for(var i in arr) {
-          content += '<tr>';
-          content += '<td>' + arr[i].City + '</td>';
-          content += '<td>' + arr[i].City_ID + '</td>';
-          content += '<td>' + arr[i].Date + '</td>';
-          content += '<td>' + arr[i].Geo_Point + '</td>';
-          content += '<td>' + arr[i].ID_Personal + '</td>';
-          content += '<td>' + arr[i].ID_Type + '</td>';
-          content += '<td>' + arr[i].Is_Patient_Minor + '</td>';
-          content += '<td>' + arr[i].LAT + '</td>';
-          content += '<td>' + arr[i].LON + '</td>';
-          content += '<td>' + arr[i].N_Home_Visits + '</td>';
-          content += '<td>' + arr[i].Pathology + '</td>';
-          content += '<td>' + arr[i].Patient_Age + '</td>';
-          content += '<td>' + arr[i].Time_Delay + '</td>';
-          content += '<td>' + arr[i].Visit_Status + '</td>';
-          content += '<td>' + arr[i].Zipcode + '</td>';
-          content += '</tr>';
-        };
-        $('#ex-table').append(content);
-          }
-      });
+        add500Rows()
+
+      }
+    });
   };
+
+  function add500Rows() {
+    var content = '';
+    for (i = 500 * count; i < Math.min(500 * count + 500, arr.length); i++) {
+      content += '<tr>';
+      content += '<td>' + (i + 1) + '</td>';
+      content += '<td>' + arr[i].City + '</td>';
+      content += '<td>' + arr[i].City_ID + '</td>';
+      content += '<td>' + arr[i].Date + '</td>';
+      content += '<td>' + arr[i].Geo_Point + '</td>';
+      content += '<td>' + arr[i].ID_Personal + '</td>';
+      content += '<td>' + arr[i].ID_Type + '</td>';
+      content += '<td>' + arr[i].Is_Patient_Minor + '</td>';
+      content += '<td>' + arr[i].LAT + '</td>';
+      content += '<td>' + arr[i].LON + '</td>';
+      content += '<td>' + arr[i].N_Home_Visits + '</td>';
+      content += '<td>' + arr[i].Pathology + '</td>';
+      content += '<td>' + arr[i].Patient_Age + '</td>';
+      content += '<td>' + arr[i].Time_Delay + '</td>';
+      content += '<td>' + arr[i].Visit_Status + '</td>';
+      content += '<td>' + arr[i].Zipcode + '</td>';
+      content += '</tr>';
+    }
+    count++;
+    $('#ex-table').append(content);
+  };
+
 
   function deleteTable() {
     var tb = document.getElementById('ex-table');
@@ -414,6 +478,7 @@
 
   //change arguments, delete odd table, and load new table  
   function reloadTable(a, b) {
+    count = 0;
     orderBy = a;
     ascending_flag = b;
     deleteTable();
