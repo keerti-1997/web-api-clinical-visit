@@ -139,12 +139,14 @@
 
   function filter(id)
   {
+    w = id.slice(0,-2)
+    console.log(w+"ip")
     console.log("in filter");
     for (var c in categorical)
-      if(categorical[c] != id)
+      if(categorical[c] != (w+"ip"))
         document.getElementById(categorical[c]).style.display = "none";
     for (var c in numerical)
-      if(numerical[c] != id)
+      if(numerical[c] != (w+"ip"))
         document.getElementById(numerical[c]).style.display = "none";
 
     if(filter_clicks[id] % 2 == 0) 
@@ -157,13 +159,17 @@
 
   function cleared(id)
   {
-    if(numerical.indexOf(id) > -1)
+    w = id.slice(0,-5)
+    console.log(w);
+    if(numerical.indexOf(w+"ip") > -1)
     {
-      document.getElementById(id).children[0].value = "";
-      document.getElementById(id).children[1].value = "";    
+      //console.log(document.getElementById(id).children[0].children[1].children[0].value)
+      document.getElementById(id).children[0].children[1].children[0].value = "";
+      document.getElementById(id).children[1].children[1].children[0].value = "";
+      //document.getElementById(id).value = "";    
     }
-    if(categorical.indexOf(id) > -1)
-      document.getElementById(id).children[0].value = "";
+    if(categorical.indexOf(w+"ip") > -1)
+      document.getElementById(id).value = "";
   }
 
 
@@ -176,14 +182,13 @@
     var num = {};
     var input = {};
     console.log("in submitted")
-    console.log(id.slice(0,-2));
-    col = id.slice(0,-2);
-
-    if(numerical.indexOf(id) > -1)
+    console.log(id.slice(0,-5));
+    col = id.slice(0,-5);
+    if(numerical.indexOf(col+"ip") > -1)
     {
       type_of_filter = 1
-      min = document.getElementById(id).children[0].value;
-      max = document.getElementById(id).children[1].value; 
+      min = document.getElementById(id).children[0].children[1].children[0].value;
+      max = document.getElementById(id).children[1].children[1].children[0].value;
       
       if(typeof min == "undefined" || typeof max == "undefined")
       {
@@ -197,11 +202,11 @@
       input = JSON.stringify({table:jsonified,filters:num,type:type_of_filter});
     }
 
-    if(categorical.indexOf(id) > -1) 
+    if(categorical.indexOf(w+"ip") > -1) 
     {
       type_of_filter = 0
-      word = document.getElementById(id).children[0].value;
-      console.log(typeof word);
+      var word = document.getElementById(id).value;
+      console.log(word);
       
       if(typeof word == "undefined")
       {
@@ -215,7 +220,7 @@
       input = JSON.stringify({table:jsonified,filters:filt,type:type_of_filter});
     }
     
-    console.log(input);   
+    //console.log(input);   
     console.log("Now ajax call");
     $.ajax({
           type: 'POST',
