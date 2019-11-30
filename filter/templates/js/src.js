@@ -12,7 +12,7 @@
   firebase.analytics();
   console.log("initialized");
   var value = document.getElementById("value");
-  var dbRef = firebase.database().ref().child("data");
+  var dbRef = firebase.database().ref().child("testdata");
 
   //initialize arguments(orderBy, ascending_flag)
   //ascending_flag =  1 -> ascending
