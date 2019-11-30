@@ -164,19 +164,11 @@
     }
     if(categorical.indexOf(id) > -1)
       document.getElementById(id).children[0].value = "";
-
-    //$("#filtered").hide();
-    //$("#ex-table").show();
   }
 
 
   function submitted(id)
   { 
-    //deleteTable();
-    //loadTable();
-    // if(submit_clicks != 0)
-    //   jsonified = JSON.stringify(makeJsonFromTable('filtered-table'));
-    // 
 
     jsonified = JSON.stringify(makeJsonFromTable('ex-table'));
     
@@ -192,7 +184,13 @@
       type_of_filter = 1
       min = document.getElementById(id).children[0].value;
       max = document.getElementById(id).children[1].value; 
-    
+      
+      if(typeof min == "undefined" || typeof max == "undefined")
+      {
+        alert("Input cannot be empty!");
+        return;
+      }
+      
       num['col'] = col;
       num['range'] = {'min':min,'max':max};
       filter_list.push(num);
@@ -203,17 +201,18 @@
     {
       type_of_filter = 0
       word = document.getElementById(id).children[0].value;
-      if(word.length > 0)
-        document.getElementById(id).children[2].disabled = false;
-      else
-        document.getElementById(id).children[2].disabled = true;
-
-
+      console.log(typeof word);
+      
+      if(typeof word == "undefined")
+      {
+        alert("Input cannot be empty!");
+        return;
+      }
+      
       filt['col'] = col;
       filt['word'] = word;
       filter_list.push(filt);
       input = JSON.stringify({table:jsonified,filters:filt,type:type_of_filter});
-      //console.log(filter_list);
     }
     
     console.log(input);   
