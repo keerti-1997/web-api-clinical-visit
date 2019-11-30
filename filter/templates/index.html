@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/style.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -34,13 +35,146 @@
     <div class="row" id="loading">
       <img src="assets/770.gif">
     </div>
-
-
-
     
     <div class="row" id="navigation" style="display: none">
       <a href="index.html" class="btn btn-primary" id="reset"><b>RESET</b></a>
-      
+    
+
+
+    <nav id="main_nav">
+    <ul>
+      <li>
+        <a id="sortbutton" class="btn btn-primary"><b>Sorting</b></a>
+        <ul>
+          <li>
+            <a>Numerical</a>
+            <ul>
+              <li>
+                <a >City_ID
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('City_ID', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('City_ID', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >ID_Personal
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('ID_Personal', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('ID_Personal', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >ID_Type
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('ID_Type', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('ID_Type', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >Latitude
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('LAT', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('LAT', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >Longitude
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('LON', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('LON', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >N_Home_Visits
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('N_Home_Visits', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('N_Home_Visits', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >Patient_Age
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Patient_Age', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Patient_Age', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li> 
+                <a >Time_Delay
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Time_Delay', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Time_Delay', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li> 
+                <a >Visit_Status
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Visit_Status', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Visit_Status', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >Zipcode
+                  <span style="float:right">
+                    <i class="fas fa-sort-numeric-down" onclick="reloadTable('Zipcode', 1)"></i>
+                    <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('Zipcode', -1)"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a>Non-numerical</a>
+            <ul>
+              <li>
+                <a >City
+                  <span style="float:right">
+                    <i class="fas fa-sort-alpha-down" onclick="reloadTable('City', 1)"></i>
+                    <i class="fas fa-sort-alpha-up-alt" onclick="reloadTable('City', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >Pathology
+                  <span style="float:right">
+                    <i class="fas fa-sort-alpha-down" onclick="reloadTable('Pathology', 1)"></i>
+                    <i class="fas fa-sort-alpha-up-alt" onclick="reloadTable('Pathology', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >Minority
+                  <span style="float:right">
+                    <i class="fas fa-sort-alpha-down" onclick="reloadTable('Is_Patient_Minor', 1)"></i>
+                    <i class="fas fa-sort-alpha-up-alt" onclick="reloadTable('Is_Patient_Minor', -1)"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a >Date
+                  <span style="float:right">
+                    <i class="fas fa-sort-alpha-down" onclick="reloadTable('Date', 1)"></i>
+                    <i class="fas fa-sort-alpha-up-alt" onclick="reloadTable('Date', -1)"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </li>
+      </ul>
+    </nav>
+
+
+
+
     <nav id="main_nav">
       <ul>
         <li>
@@ -234,7 +368,7 @@
               </ul>
             </li>
             <li id="non-numerical">
-              <a>Categorical</a>
+              <a>Non-numerical</a>
               <ul>
                 <li><a>City<span class="fa fa-filter" style="float:right" onclick="filter('Cityip')"></span>
                 <div style="width:200px;" id="Cityip">
