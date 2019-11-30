@@ -29,146 +29,210 @@
     <div class="row justify-content-center align-items-center">
       <h1>Home Medical Visits</h1>
     </div>
-    <div class="row">
+
+    <div class="row" id="loading">
+      <img src="assets/770.gif">
+    </div>
+
+    
+    <div class="row" id="navigation" style="display: none">
       <a href="index.html" class="btn btn-primary" id="reset"><b>RESET</b></a>
       <nav id="main_nav">
       <ul>
         <li>
-          <a href="" id="sortbutton" class="btn btn-primary"><b>Filter</b></a>
+          <a id="sortbutton" class="btn btn-primary"><b>Filter</b></a>
           <ul>
             <li id="numerical">
               <a>Numerical</a>
               <ul>
                 <li>
-                  <div class="row">
-                    <div class="col">City_ID</div>
-                    <div class="col"><span class="fa fa-filter" onclick="filter('City_IDip')"></span></div>
-                  </div>  
-                  <div id="City_IDip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('City_IDip')">Clear</button>
-                    <input type="submit" onclick="submitted('City_IDip')">
-                  </div>  
-                </li>
-                <li>
-                  <div class="row">
-                    <div class="col">ID_Personal</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('ID_Personalip')"></span></div>
-                  </div>  
-                  <div id="ID_Personalip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('ID_Personalip')">Clear</button>
-                    <input type="submit" onclick="submitted('ID_Personalip')">
-                  </div>  
-                </li>
-                <li>
-                  <div class="row">
-                    <div class="col">ID_Type</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('ID_Typeip')"></span></div>
+                  <a>City_ID<span class="fa fa-filter" style="float:right" onclick="filter('City_IDip')"></span>
+                  <div style="width:200px;" id="City_IDip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('City_IDip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('City_IDip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
                   </div>
-                  <div id="ID_Typeip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('ID_Typeip')">Clear</button>
-                    <input type="submit" onclick="submitted('ID_Typeip')">
-                  </div>  
+                </div> 
                 </li>
                 <li>
-                  <div class="row">
-                    <div class="col">Latitude</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Latitudeip')"></span></div>
-                  </div>
-                  <div id="Latitudeip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('Latitudeip')">Clear</button>
-                    <input type="submit" onclick="submitted('Latitudeip')">
-                  </div>  
-                </li>
-                <li>
-                  <div class="row">
-                    <div class="col">Longitude</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Longitudeip')"></span></div>
-                  </div>
-                  <div id="Longitudeip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('Longitudeip')">Clear</button>
-                    <input type="submit" onclick="submitted('Longitudeip')">
-                  </div>  
-                </li>
-                <li>
-                  <div class="row">
-                    <div class="col">N_Visits</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('N_Home_Visitsip')"></span></div>
-                  </div>
-                  <div id="N_Home_Visitsip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('N_Home_Visitsip')">Clear</button>
-                    <input type="submit" onclick="submitted('N_Home_Visitsip')">
-                  </div>  
-                </li>
-                <li>
-                  <div class="row">
-                    <div class="col">Patient_Age</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Patient_Ageip')"></span></div>
-                  </div>
-                  <div id="Patient_Ageip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('Patient_Ageip')">Clear</button>
-                    <input type="submit" onclick="submitted('Patient_Ageip')">
+                  <a>ID_Personal<span class="fa fa-filter" style="float:right" onclick="filter('ID_Personalip')"></span>
+                    <div style="width:200px;" id="ID_Personalip">
+                      <div class="row ipbox_part1">
+                        <div class="row">
+                          <div class="col">Enter Min</div>
+                          <div class="col"><input type="text" class="ipbox"></div>
+                        </div>
+                        <div class="row" style="margin-top:2%">
+                          <div class="col">Enter Max</div>
+                          <div class="col"><input type="text" class="ipbox"></div>
+                        </div> 
+                      </div>
+                    <div class="row ipbox_part2">
+                      <div class="col"><button onclick="cleared('ID_Personalip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                      <div class="col"><input onclick="submitted('ID_Personalip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
+                    </div>
                   </div> 
                 </li>
-                <li>
-                <div class="row">                    
-                  <div class="col">Time_Delay</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Time_Delayip')"></span></div>
+                <li><a>ID_Type<span class="fa fa-filter" style="float:right" onclick="filter('ID_Typeip')"></span>
+                  <div style="width:200px;" id="ID_Typeip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('ID_Typeip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('ID_Typeip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
                   </div>
-                  <div id="Time_Delayip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('Time_Delayip')">Clear</button>
-                    <input type="submit" onclick="submitted('Time_Delayip')">
-                  </div>
+                </div>                 
                 </li>
-                <li>
-                  <div class="row">                    
-                    <div class="col">Visit_Status</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Visit_Statusip')"></span></div>
+                <li><a>Latitude<span class="fa fa-filter" style="float:right" onclick="filter('Latitudeip')"></span>
+                  <div style="width:200px;" id="Latitudeip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('Latitudeip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('Latitudeip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
                   </div>
-                  <div id="Visit_Statusip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('Visit_Statusip')">Clear</button>
-                    <input type="submit" onclick="submitted('Visit_Statusip')">
+                </div>                
+              </li>
+                <li><a>Longitude<span class="fa fa-filter" style="float:right" onclick="filter('Longitudeip')"></span>
+                  <div style="width:200px;" id="Longitudeip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('Longitudeip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('Longitudeip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
                   </div>
+                </div>
                 </li>
-                <li>
-                  <div class="row">                    
-                    <div class="col">Zip_Code</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Zip_Codeip')"></span></div>
-                  </div>                  
-                  <div id="Zip_Codeip">  
-                    Enter Min <input type="text">
-                    Enter Max <input type="text">
-                    <button onclick="cleared('Zip_Codeip')">Clear</button>
-                    <input type="submit" onclick="submitted('Zip_Codeip')">
+                <li><a>N_Home_Visits<span class="fa fa-filter" style="float:right" onclick="filter('N_Home_Visitsip')"></span>
+                  <div style="width:200px;" id="N_Home_Visitsip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('N_Home_Visitsip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('N_Home_Visitsip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
                   </div>
+                </div>
+                </li>
+                <li><a>Patient_Age<span class="fa fa-filter" style="float:right" onclick="filter('Patient_Ageip')"></span>
+                  <div style="width:200px;" id="Patient_Ageip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('Patient_Ageip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('Patient_Ageip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
+                  </div>
+                </div>
+                </li>
+                <li><a>Time_Delay<span class="fa fa-filter" style="float:right" onclick="filter('Time_Delayip')"></span>
+                  <div style="width:200px;" id="Time_Delayip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('Time_Delayip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('Time_Delayip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
+                  </div>
+                </div>
+                </li>
+                <li><a>Visit_Status<span class="fa fa-filter" style="float:right" onclick="filter('Visit_Statusip')"></span>
+                  <div style="width:200px;" id="Visit_Statusip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('Visit_Statusip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('Visit_Statusip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
+                  </div>
+                </div>
+                </li>
+                <li><a>Zip_Code<span class="fa fa-filter" style="float:right" onclick="filter('Zip_Codeip')"></span>                  
+                  <div style="width:200px;" id="Zip_Codeip">
+                    <div class="row ipbox_part1">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                    </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('Zip_Codeip')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('Zip_Codeip')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
+                  </div>
+                </div>
                 </li>
               </ul>
             </li>
             <li id="non-numerical">
               <a>Categorical</a>
               <ul>
-                <li>
-                    <div class="row">                    
-                      <div class="col">City</div>  
-                      <div class="col"><span class="fa fa-filter" onclick="filter('Cityip')"></span></div>
-                  </div>
+                <li><a>City<span class="fa fa-filter" style="float:right" onclick="filter('Cityip')"></span>
                   <div id="Cityip">
                     <input type="text">
                     <button onclick="cleared('Cityip')">Clear</button>
@@ -176,32 +240,20 @@
                   </div>
                 </li>
                 <!-- <li onclick="filter('cityip')" id="city">GeoPoint<input type="text" id="cityip"></li> -->
-                <li>
-                    <div class="row">                    
-                      <div class="col">Pathology</div>  
-                      <div class="col"><span class="fa fa-filter" onclick="filter('Pathologyip')"></span></div>
-                  </div>
+                <li><a>Pathology<span class="fa fa-filter" style="float:right" onclick="filter('Pathologyip')"></span>
                   <div id="Pathologyip">
                     <input type="text">
                     <button onclick="cleared('Pathologyip')">Clear</button>
                     <input type="submit" onclick="submitted('Pathologyip')">
                   </div>
                 </li>
-                <li>
-                  <div class="row">                    
-                    <div class="col">Minority</div>  
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Is_Patient_Minorip')"></span></div>
-                  </div>
+                <li><a>Minority<span class="fa fa-filter" style="float:right" onclick="filter('Is_Patient_Minorip')"></span>
                   <div id="Is_Patient_Minorip">
                     <input type="text">
                     <button onclick="cleared('Is_Patient_Minorip')">Clear</button>
                     <input type="submit" onclick="submitted('Is_Patient_Minorip')"></div>
                 </li> 
-                <li>
-                  <div class="row">
-                    <div class="col">Date</div>
-                    <div class="col"><span class="fa fa-filter" onclick="filter('Dateip')"></span></div>
-                  </div>
+                <li><a>Date<span class="fa fa-filter" style="float:right" onclick="filter('Dateip')"></span>
                   <div id="Dateip">  
                     <input type="text">
                     <button onclick="cleared('Dateip')">Clear</button>
@@ -214,12 +266,13 @@
           </li>
         </ul>
       </nav>
-      
-      <div style="height:500px; overflow: auto" frame="box">
+
+      <div class="row" style="height:500px; overflow: auto; display: none" frame="box" id="tableContent">
         <table id="ex-table" class="scroll">
           <tbody>
             <thead>
             <tr>
+              <th>Row#</th>
               <th>City</th>
               <th>City_ID</th> 
               <th>Date</th>
@@ -240,8 +293,9 @@
           </tbody>
         </table> 
       </div>
+      <a onclick="add500Rows()" style="color:rgba(0,0,255); display: none" id="paging">Show more 500 rows (Total: 40079)</a>
     </div>
-  </div>  
+  </div>
 </body>
 
 </html>

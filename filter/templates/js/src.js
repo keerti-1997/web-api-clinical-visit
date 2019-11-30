@@ -19,9 +19,12 @@
   //ascending_flag = -1 -> descending
   var orderBy = "City";
   var ascending_flag = 1;
+  var countRows = 0;
+  var arr = new Array();
 
   //used for sorting comparity
-  function locale(a, b) {
+  function locale(a, b) 
+  {
     if (typeof(a[orderBy])  === "string") {
       return ascending_flag * a[orderBy].localeCompare(b[orderBy]);
     } else {
@@ -35,7 +38,11 @@
     {
       if(snapshot.exists()) 
       {
-        var arr = new Array();
+        console.log("Data is here");
+        $("#loading").hide();
+        $("#navigation").show();
+        $("#tableContent").show();
+        $("#paging").show();
         snapshot.forEach(function(data) 
         {
           var val = data.val();
@@ -58,13 +65,15 @@
           // tmp["Geo_Point"] = val.Geo_Point;
           arr.push(tmp);
         });
+        arr.sort(locale);
+        console.log('Completed sorting');
+        add500Rows();
 
-        //arr.sort(locale);
-        //console.log('Completed sorting');
         var content = '';
-        for(var i in arr) 
+        for(var i = 500 * countRows; i < Math.min(500 * countRows + 500, arr.length); i++) 
         {
           content += '<tr>';
+          content += '<td>' + (i + 1) + '</td>';
           content += '<td>' + arr[i].City + '</td>';
           content += '<td>' + arr[i].City_ID + '</td>';
           content += '<td>' + arr[i].Date + '</td>';
@@ -83,8 +92,9 @@
           content += '</tr>';
         };
         $('#ex-table').append(content);
-        }
-      });
+        countRows += 1;
+      }
+    });
   };
 
   function deleteTable() 
@@ -220,12 +230,13 @@
             console.log(data);
             var filtered = "";
             var count = 0;
-
-            for(var i in data)
+            var countFiltered = 0;
+            for(i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, data.length); i++)
             {
-              console.log(data[i])
+              //console.log(data[i])
 
               filtered += '<tr>';
+              filtered += '<td>' + (i + 1) + '</td>';
               filtered += '<td>' + data[i].City + '</td>';
               filtered += '<td>' + data[i].City_ID + '</td>';
               filtered += '<td>' + data[i].Date + '</td>';
@@ -245,9 +256,7 @@
               count += 1;
             } 
             console.log("Length of the result ",count);
-            //$('#filtered-table').append(filtered);
-            //$('#ex-table').hide();
-            //$('#filtered-table').show(); 
+            countFiltered += 1; 
             $('#ex-table tbody tr').remove();
             $('#ex-table').append(filtered);                 
           },
@@ -257,6 +266,35 @@
             console.log(error);
             alert(error)
           }
-    }); 
+    });         
+    console.log('Completed filtering');
+    add500Rows();
     submit_clicks += 1;    
   }
+
+  function add500Rows() 
+  {
+    var content = '';
+    for (i = 500 * countRows; i < Math.min(500 * countRows + 500, arr.length); i++) {
+      content += '<tr>';
+      content += '<td>' + (i + 1) + '</td>';
+      content += '<td>' + arr[i].City + '</td>';
+      content += '<td>' + arr[i].City_ID + '</td>';
+      content += '<td>' + arr[i].Date + '</td>';
+      // content += '<td>' + arr[i].Geo_Point + '</td>';
+      content += '<td>' + arr[i].ID_Personal + '</td>';
+      content += '<td>' + arr[i].ID_Type + '</td>';
+      content += '<td>' + arr[i].Is_Patient_Minor + '</td>';
+      content += '<td>' + arr[i].LAT + '</td>';
+      content += '<td>' + arr[i].LON + '</td>';
+      content += '<td>' + arr[i].N_Home_Visits + '</td>';
+      content += '<td>' + arr[i].Pathology + '</td>';
+      content += '<td>' + arr[i].Patient_Age + '</td>';
+      content += '<td>' + arr[i].Time_Delay + '</td>';
+      content += '<td>' + arr[i].Visit_Status + '</td>';
+      content += '<td>' + arr[i].Zipcode + '</td>';
+      content += '</tr>';
+    }
+    countRows++;
+    $('#ex-table').append(content);
+  };

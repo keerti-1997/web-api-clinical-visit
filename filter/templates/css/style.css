@@ -55,6 +55,30 @@
     #main_nav li li:hover, #main_nav li li:hover li {
       background: #bbb;
     }
+
+  .ipbox
+  {
+    position:relative;
+    margin-left:-70%;
+    width:130%
+  }
+
+  .ipbox_part1
+  {
+    font-size: 12px;
+    position:relative;
+    margin-left:1%;
+    margin-top:5%;
+  }
+
+  .ipbox_part2
+  {
+    position:relative;
+    margin-left:-1%;
+    margin-top:5%;
+    margin-bottom: 2%
+  }
+
   
     #main_nav li li li:hover {
       background: #999;
@@ -99,4 +123,9 @@
     display: none; 
   }
 
-  
+  #loading
+  {
+    position: relative;
+    margin-left: 500px;
+    margin-top: 200px;
+  }
