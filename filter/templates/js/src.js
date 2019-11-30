@@ -12,7 +12,7 @@
   firebase.analytics();
   console.log("initialized");
   var value = document.getElementById("value");
-  var dbRef = firebase.database().ref().child("testdata");
+  var dbRef = firebase.database().ref().child("data");
 
   //initialize arguments(orderBy, ascending_flag)
   //ascending_flag =  1 -> ascending
@@ -111,6 +111,8 @@
   //change arguments, delete odd table, and load new table  
   function reloadTable(a, b) 
   {
+    count = 0;
+    countRows = 0;
     orderBy = a;
     ascending_flag = b;
     deleteTable();
