@@ -12,7 +12,7 @@
   firebase.analytics();
   console.log("initialized");
   var value = document.getElementById("value");
-  var dbRef = firebase.database().ref().child("data");
+  var dbRef = firebase.database().ref().child("testdata");
 
   //initialize arguments(orderBy, ascending_flag)
   //ascending_flag =  1 -> ascending
@@ -43,6 +43,7 @@
         $("#navigation").show();
         $("#tableContent").show();
         $("#paging").show();
+
         snapshot.forEach(function(data) 
         {
           var val = data.val();
@@ -125,11 +126,13 @@
   var filter_list = [];
   var numeric = [];
   var submit_click = 0;
-  var categorical = ["Cityip","Pathologyip","Is_Patient_Minorip","Dateip"];
-  var numerical = ["City_IDip","ID_Personalip","ID_Typeip","Latitudeip","Longitudeip","N_Home_Visitsip","Patient_Ageip","Time_Delayip","Visit_Statusip","Zip_Codeip"]
+  var categorical = ["Cityip","Pathologyip","Dateip"];
+  var numerical = ["City_IDip","ID_Personalip","ID_Typeip","Latitudeip","Longitudeip","N_Home_Visitsip","Patient_Ageip","Time_Delayip","Visit_Statusip","Zip_Codeip","Is_Patient_Minorip"]
   var type_of_filter;
   var filter_clicks = {};
   var submit_clicks = 0;
+  var filtdata;
+  var countFiltered;
 
 
   for(var n in categorical)
@@ -230,16 +233,17 @@
           data : input,
           dataType: 'json',
           url: 'http://127.0.0.1:5000/import_json',
+
           success: function (data) 
           {
             console.log("success");
-            console.log(data);
             var filtered = "";
             var count = 0;
-            var countFiltered = 0;
+            countFiltered = 0;
+            console.log(data.length)
+            console.log(typeof(data))
             for(i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, data.length); i++)
             {
-              //console.log(data[i])
 
               filtered += '<tr>';
               filtered += '<td>' + (i + 1) + '</td>';
@@ -262,9 +266,22 @@
               count += 1;
             } 
             console.log("Length of the result ",count);
+            if (data.length <= 500)
+            {  
+              $("#paging").hide();
+              $("#paging_filt").hide();
+            }
+            else
+            { 
+              $("#paging").hide();
+              $("#paging_filt").show();  
+            }
+                          
             countFiltered += 1; 
             $('#ex-table tbody tr').remove();
-            $('#ex-table').append(filtered);                 
+            $('#ex-table').append(filtered); 
+            filtdata = data; 
+            //console.log(filtdata);               
           },
 
           error: function(error) 
@@ -274,7 +291,7 @@
           }
     });         
     console.log('Completed filtering');
-    add500Rows();
+    //add500Rows();
     submit_clicks += 1;    
   }
 
@@ -304,3 +321,33 @@
     countRows++;
     $('#ex-table').append(content);
   };
+
+
+  function add500FiltRows() 
+  {
+    var content = '';
+    console.log(countFiltered);
+
+    for (i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, filtdata.length); i++) {
+      content += '<tr>';
+      content += '<td>' + (i + 1) + '</td>';
+      content += '<td>' + filtdata[i].City + '</td>';
+      content += '<td>' + filtdata[i].City_ID + '</td>';
+      content += '<td>' + filtdata[i].Date + '</td>';
+      // content += '<td>' + arr[i].Geo_Point + '</td>';
+      content += '<td>' + filtdata[i].ID_Personal + '</td>';
+      content += '<td>' + filtdata[i].ID_Type + '</td>';
+      content += '<td>' + filtdata[i].Is_Patient_Minor + '</td>';
+      content += '<td>' + filtdata[i].Latitude + '</td>';
+      content += '<td>' + filtdata[i].Longitude + '</td>';
+      content += '<td>' + filtdata[i].N_Home_Visits + '</td>';
+      content += '<td>' + filtdata[i].Pathology + '</td>';
+      content += '<td>' + filtdata[i].Patient_Age + '</td>';
+      content += '<td>' + filtdata[i].Time_Delay + '</td>';
+      content += '<td>' + filtdata[i].Visit_Status + '</td>';
+      content += '<td>' + filtdata[i].Zipcode + '</td>';
+      content += '</tr>';
+    }
+    countFiltered += 1;
+    $('#ex-table').append(content);
+  };  

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Home Medical Visits</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +20,6 @@
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
-
   <script src='js/TableToJson.js'></script>
   <script src='js/src.js'></script>
   
@@ -172,9 +172,6 @@
       </ul>
     </nav>
 
-
-
-
     <nav id="main_nav">
       <ul>
         <li>
@@ -223,7 +220,7 @@
                 </li>
                 <li><a>ID_Type<span class="fa fa-filter" style="float:right" onclick="filter('ID_Typeip')"></span>
                   <div style="width:200px;" id="ID_Typeip">
-                    <div class="row ipbox_part1" id="ID_Type_inpt">
+                    <div class="row ipbox_part1" id="Is_Patient_Minor_inpt">
                       <div class="row">
                         <div class="col">Enter Min</div>
                         <div class="col"><input type="text" class="ipbox"></div>
@@ -239,6 +236,23 @@
                   </div>
                 </div>                 
                 </li>
+                <li><a>Is_Patient_Minor<span class="fa fa-filter" style="float:right" onclick="filter('Is_Patient_Minorip')"></span>
+                  <div style="width:200px;" id="Is_Patient_Minorip">
+                  <div class="row ipbox_part1" id="Is_Patient_Minor_inpt">
+                      <div class="row">
+                        <div class="col">Enter Min</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col">Enter Max</div>
+                        <div class="col"><input type="text" class="ipbox"></div>
+                      </div> 
+                  </div>
+                  <div class="row ipbox_part2">
+                    <div class="col"><button onclick="cleared('Is_Patient_Minor_inpt')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
+                    <div class="col"><input onclick="submitted('Is_Patient_Minor_inpt')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
+                  </div>
+                </div>
                 <li><a>Latitude<span class="fa fa-filter" style="float:right" onclick="filter('Latitudeip')"></span>
                   <div style="width:200px;" id="Latitudeip">
                     <div class="row ipbox_part1" id="Latitude_inpt">
@@ -396,20 +410,7 @@
                     <div class="col"><input onclick="submitted('Pathology_word')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
                   </div>
                 </div>
-                </li>
-                <li><a>Minority<span class="fa fa-filter" style="float:right" onclick="filter('Is_Patient_Minorip')"></span>
-                  <div style="width:200px;" id="Is_Patient_Minorip">
-                  <div class="row ipbox_part1">
-                    <div class="row">
-                      <div class="col">Enter word </div>
-                      <div class="col"><input type="text" class="ipbox" id="Is_Patient_Minor_word"></div>
-                    </div>
-                  </div>
-                  <div class="row ipbox_part2">
-                    <div class="col"><button onclick="cleared('Is_Patient_Minor_word')" class="btn btn-secondary" style="font-size: 12px">Clear</button></div>
-                    <div class="col"><input onclick="submitted('Is_Patient_Minor_word')" class="btn btn-primary" type="submit" style="font-size: 12px"></div>
-                  </div>
-                </div>                
+                </li>                
               </li> 
                 <li><a>Date<span class="fa fa-filter" style="float:right" onclick="filter('Dateip')"></span>
                 <div style="width:200px;" id="Dateip">
@@ -459,6 +460,7 @@
         </table> 
       </div>
       <a onclick="add500Rows()" style="color:rgba(0,0,255); display: none" id="paging">Show more 500 rows (Total: 40079)</a>
+      <a onclick="add500FiltRows()" style="color:rgba(0,0,255); display: none" id="paging_filt">Show more rows </a>      
     </div>
   </div>
 </body>

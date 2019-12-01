@@ -164,7 +164,7 @@
             <a href="">Numerical</a>
             <ul>
               <li>
-                <a >City_ID
+                <a>City_ID
                   <span style="float:right">
                     <i class="fas fa-sort-numeric-down" onclick="reloadTable('City_ID', 1)"></i>
                     <i class="fas fa-sort-numeric-up-alt" onclick="reloadTable('City_ID', -1)"></i>
@@ -433,13 +433,14 @@
 
         arr.sort(locale);
         console.log('Completed sorting');
-        add500Rows()
+        add500Rows();
 
       }
     });
   };
 
-  function add500Rows() {
+  function add500Rows() 
+  {
     var content = '';
     for (i = 500 * count; i < Math.min(500 * count + 500, arr.length); i++) {
       content += '<tr>';

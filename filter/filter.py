@@ -31,6 +31,7 @@ def filter_table(data):
 		records["Date"] = pd.to_datetime(records["Date"])
 		records["ID_Personal"] = records["ID_Personal"].astype(str).astype(int)
 		records["ID_Type"] = records["ID_Type"].astype(str).astype(int)
+		records["Is_Patient_Minor"] = records["Is_Patient_Minor"].astype(str).astype(int)
 		records["N_Home_Visits"] = records["N_Home_Visits"].astype(str).astype(int)
 		records["Patient_Age"] = records["Patient_Age"].astype(str).astype(int)
 		records["Time_Delay"] = records["Time_Delay"].astype(str).astype(int)
