@@ -290,6 +290,7 @@ function submitted(id)
           $('#ex-table tbody tr').remove();
           $('#ex-table').append(filtered); 
           filtdata = data; 
+          var filtarr = new Array();
           for (i in filtdata)
           {
             var tmp = new Object();
@@ -382,8 +383,8 @@ function add500FiltRows()
     content += '<td>' + filtarr[i].ID_Personal + '</td>';
     content += '<td>' + filtarr[i].ID_Type + '</td>';
     content += '<td>' + filtarr[i].Is_Patient_Minor + '</td>';
-    content += '<td>' + filtarr[i].Latitude + '</td>';
-    content += '<td>' + filtarr[i].Longitude + '</td>';
+    content += '<td>' + filtarr[i].LAT + '</td>';
+    content += '<td>' + filtarr[i].LON + '</td>';
     content += '<td>' + filtarr[i].N_Home_Visits + '</td>';
     content += '<td>' + filtarr[i].Pathology + '</td>';
     content += '<td>' + filtarr[i].Patient_Age + '</td>';
