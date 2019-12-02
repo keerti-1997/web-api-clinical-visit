@@ -20,7 +20,7 @@ var ascending_flag = 1;
 var countRows = 0;
 var arr = new Array();
 var fulldata;
-
+var load_once_flag = 0;
 //used for sorting comparity
 function locale(a, b) 
 {
@@ -35,72 +35,76 @@ function loadTable()
 {
   dbRef.once('value', function(snapshot) 
   {
-    if(snapshot.exists()) 
+    // execute this part only once
+    if (load_once_flag == 0) 
     {
-      console.log("Data is here");
-      $("#loading").hide();
-      $("#navigation").show();
-      $("#tableContent").show();
-      $("#paging").show();
-      
-      snapshot.forEach(function(data) 
+      if(snapshot.exists()) 
       {
-        var val = data.val();
-        var tmp = new Object();
-        tmp["City"] = val.City;
-        tmp["City_ID"] = val.City_ID;
-        tmp["Date"] = val.Date;
-        tmp["ID_Personal"] = val.ID_Personal;
-        tmp["ID_Type"] = val.ID_Type;
-        tmp["Is_Patient_Minor"] = val.Is_Patient_Minor;
-        tmp["LAT"] = val.LAT;
-        tmp["LON"] = val.LON;
-        tmp["N_Home_Visits"] = val.N_Home_Visits;
-        tmp["Pathology"] = val.Pathology;
-        tmp["Patient_Age"] = val.Patient_Age;
-        tmp["Time_Delay"] = val.Time_Delay;
-        tmp["Geo_Point"] = val.Geo_Point;
-        tmp["Visit_Status"] = val.Visit_Status;
-        tmp["Zipcode"] = val.Zipcode;
-        // tmp["Geo_Point"] = val.Geo_Point;
-        arr.push(tmp);
-      });
-
-      arr.sort(locale);
-      console.log('Completed sorting');
-      add500Rows();
-
-      var content = '';
-      for(var i = 500 * countRows; i < Math.min(500 * countRows + 500, arr.length); i++) 
-      {
-        content += '<tr>';
-        content += '<td>' + (i + 1) + '</td>';
-        content += '<td>' + arr[i].City + '</td>';
-        content += '<td>' + arr[i].City_ID + '</td>';
-        content += '<td>' + arr[i].Date + '</td>';
-        content += '<td>' + arr[i].ID_Personal + '</td>';
-        content += '<td>' + arr[i].ID_Type + '</td>';
-        content += '<td>' + arr[i].Is_Patient_Minor + '</td>';
-        content += '<td>' + arr[i].LAT + '</td>';
-        content += '<td>' + arr[i].LON + '</td>';
-        content += '<td>' + arr[i].N_Home_Visits + '</td>';
-        content += '<td>' + arr[i].Pathology + '</td>';
-        content += '<td>' + arr[i].Patient_Age + '</td>';
-        content += '<td>' + arr[i].Time_Delay + '</td>';
-        content += '<td>' + arr[i].Visit_Status + '</td>';
-        content += '<td>' + arr[i].Zipcode + '</td>';
-        // content += '<td>' + arr[i].Geo_Point + '</td>';
-        content += '</tr>';
+        console.log("Data is here");
+        $("#loading").hide();
+        $("#navigation").show();
+        $("#tableContent").show();
+        $("#paging").show();
+        
+        snapshot.forEach(function(data) 
+        {
+          var val = data.val();
+          var tmp = new Object();
+          tmp["City"] = val.City;
+          tmp["City_ID"] = val.City_ID;
+          tmp["Date"] = val.Date;
+          tmp["ID_Personal"] = val.ID_Personal;
+          tmp["ID_Type"] = val.ID_Type;
+          tmp["Is_Patient_Minor"] = val.Is_Patient_Minor;
+          tmp["LAT"] = val.LAT;
+          tmp["LON"] = val.LON;
+          tmp["N_Home_Visits"] = val.N_Home_Visits;
+          tmp["Pathology"] = val.Pathology;
+          tmp["Patient_Age"] = val.Patient_Age;
+          tmp["Time_Delay"] = val.Time_Delay;
+          tmp["Geo_Point"] = val.Geo_Point;
+          tmp["Visit_Status"] = val.Visit_Status;
+          tmp["Zipcode"] = val.Zipcode;
+          // tmp["Geo_Point"] = val.Geo_Point;
+          arr.push(tmp);
+          load_once_flag = 1;
+        });
       };
-      $('#ex-table').append(content); 
-      countRows += 1;
-      console.log(arr.length);
+    };
+
+    arr.sort(locale);
+    console.log('Completed sorting');
+    add500Rows();
+
+    var content = '';
+    for(var i = 500 * countRows; i < Math.min(500 * countRows + 500, arr.length); i++) 
+    {
+      content += '<tr>';
+      content += '<td>' + (i + 1) + '</td>';
+      content += '<td>' + arr[i].City + '</td>';
+      content += '<td>' + arr[i].City_ID + '</td>';
+      content += '<td>' + arr[i].Date + '</td>';
+      content += '<td>' + arr[i].ID_Personal + '</td>';
+      content += '<td>' + arr[i].ID_Type + '</td>';
+      content += '<td>' + arr[i].Is_Patient_Minor + '</td>';
+      content += '<td>' + arr[i].LAT + '</td>';
+      content += '<td>' + arr[i].LON + '</td>';
+      content += '<td>' + arr[i].N_Home_Visits + '</td>';
+      content += '<td>' + arr[i].Pathology + '</td>';
+      content += '<td>' + arr[i].Patient_Age + '</td>';
+      content += '<td>' + arr[i].Time_Delay + '</td>';
+      content += '<td>' + arr[i].Visit_Status + '</td>';
+      content += '<td>' + arr[i].Zipcode + '</td>';
+      // content += '<td>' + arr[i].Geo_Point + '</td>';
+      content += '</tr>';
+    };
+    $('#ex-table').append(content); 
+    countRows += 1;
+    console.log(arr.length);
       //localStorage.setItem("data", JSON.stringify(arr));
     }    
-  });
+  );
 };
-
-
 
 function deleteTable() 
 {
