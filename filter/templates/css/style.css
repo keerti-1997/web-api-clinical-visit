@@ -29,7 +29,7 @@
       color: #RGB;
     }
 
-    #sortbutton, #filterbutton,#reset {
+    #sortbutton, #filterbutton,#reset,#visualisation {
       padding: 5px 15px;
       color: #FFF;
       height: 36px;

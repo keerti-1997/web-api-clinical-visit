@@ -289,7 +289,8 @@ function submitted(id)
           $('#ex-table tbody tr').remove();
           $('#ex-table').append(filtered); 
           filtdata = data; 
-          //console.log(filtdata);               
+          //console.log(filtdata);
+          arr = filtdata;
         },
 
         error: function(error) 
