@@ -14,7 +14,7 @@ firebase.analytics();
 console.log("initialized");
 var value = document.getElementById("value");
 var dbRef = firebase.database().ref().child("data");
-console.log(dbRef);
+//console.log(dbRef);
 var orderBy = "City";
 var ascending_flag = 1;
 var countRows = 0;
@@ -71,7 +71,6 @@ function loadTable()
         });
       };
     };
-
     arr.sort(locale);
     console.log('Completed sorting');
     add500Rows();
@@ -95,7 +94,6 @@ function loadTable()
       content += '<td>' + arr[i].Time_Delay + '</td>';
       content += '<td>' + arr[i].Visit_Status + '</td>';
       content += '<td>' + arr[i].Zipcode + '</td>';
-      // content += '<td>' + arr[i].Geo_Point + '</td>';
       content += '</tr>';
     };
     $('#ex-table').append(content); 
@@ -189,14 +187,14 @@ function cleared(id)
 function submitted(id)
 { 
 
-  jsonified = JSON.stringify(makeJsonFromTable('ex-table'));
-
+  //jsonified = JSON.stringify(makeJsonFromTable('ex-table'));
+  jsonified = JSON.stringify(arr);
   
   var filt = {};
   var num = {};
   var input = {};
   console.log("in submitted")
-  console.log(id.slice(0,-5));
+  //console.log(id.slice(0,-5));
   col = id.slice(0,-5);
   if(numerical.indexOf(col+"ip") > -1)
   {
@@ -234,7 +232,7 @@ function submitted(id)
     input = JSON.stringify({table:jsonified,filters:filt,type:type_of_filter});
   }
   
-  //console.log(input);   
+  console.log(input);   
   console.log("Now ajax call");
   $.ajax({
         type: 'POST',
@@ -262,8 +260,8 @@ function submitted(id)
             filtered += '<td>' + data[i].ID_Personal + '</td>';
             filtered += '<td>' + data[i].ID_Type + '</td>';
             filtered += '<td>' + data[i].Is_Patient_Minor + '</td>';
-            filtered += '<td>' + data[i].Latitude + '</td>';
-            filtered += '<td>' + data[i].Longitude + '</td>';
+            filtered += '<td>' + data[i].LAT + '</td>';
+            filtered += '<td>' + data[i].LON + '</td>';
             filtered += '<td>' + data[i].N_Home_Visits + '</td>';
             filtered += '<td>' + data[i].Pathology + '</td>';
             filtered += '<td>' + Number(data[i].Patient_Age) + '</td>';
@@ -290,7 +288,9 @@ function submitted(id)
           $('#ex-table tbody tr').remove();
           $('#ex-table').append(filtered); 
           filtdata = data; 
-          var filtarr = new Array();
+          console.log(filtdata.length);
+          
+
           for (i in filtdata)
           {
             var tmp = new Object();
@@ -310,8 +310,8 @@ function submitted(id)
            tmp["ID_Personal"] = id_personal;
            tmp["ID_Type"] = id_type;
            tmp["Is_Patient_Minor"] = minor;
-           tmp["LAT"] = filtdata[i]['Latitude'];
-           tmp["LON"] = filtdata[i]['Longitude'];
+           tmp["LAT"] = filtdata[i]['LAT'];
+           tmp["LON"] = filtdata[i]['LON'];
            tmp["N_Home_Visits"] = visits;
            tmp["Pathology"] = filtdata[i]['Pathology'];;
            tmp["Patient_Age"] = age;
@@ -321,10 +321,12 @@ function submitted(id)
            // tmp["Geo_Point"] = val.Geo_Poicity_idarr.push(tmp);
            filtarr.push(tmp);
           }
-
-          console.log(filtdata);
-          console.log(filtarr);
+          //countFiltered += 1;
+          $('#ex-table').append(filtarr);
+          console.log(filtarr.length);
+          //add500FiltRows();
           arr = filtarr;
+          //countFiltered += 1;
         },
 
         error: function(error) 
@@ -372,7 +374,7 @@ function add500FiltRows()
   var content = '';
   console.log(countFiltered);
 
-  for (i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, filtarr.length); i++) 
+  for (i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, filtdata.length); i++) 
   {
     content += '<tr>';
     content += '<td>' + (i + 1) + '</td>';

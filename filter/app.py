@@ -17,12 +17,11 @@ cors = CORS(app, resources={r"/import_json": {"origins": "http://127.0.0.1:5000"
 def import_json():
 	if request.method == 'POST':
 		data = request.json
-		print(data)
-		print(pd.DataFrame(json.loads(data['table'])['value']).head())
+		#print(pd.DataFrame(json.loads(data['table'])['value']).head())
 		print("JSON submitting for filtering")
 		filtered = filter_table(data)
 		print("Filtered table shape",filtered.shape)
 	return jsonify(filtered.to_dict(orient='records'))
-
+	#return
 if __name__ == "__main__":
 	app.run(debug=True)

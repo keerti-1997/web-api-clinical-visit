@@ -5,7 +5,7 @@ import json
 def filter_table(data):
 	
 	
-	records = pd.DataFrame(json.loads(data['table'])['value'])
+	records = pd.DataFrame(json.loads(data['table']))
 	queries = data['filters']
 	type_of_filter = data['type']
 	#num_queries = data['num_list']
@@ -48,3 +48,4 @@ def filter_table(data):
 		temp = df_filter	
 
 	return df_filter
+
