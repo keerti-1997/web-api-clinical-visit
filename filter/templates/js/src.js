@@ -140,6 +140,7 @@ var type_of_filter;
 var filter_clicks = {};
 var submit_clicks = 0;
 var filtdata;
+var filtarr = new Array();
 var countFiltered;
 
 
@@ -265,7 +266,7 @@ function submitted(id)
             filtered += '<td>' + data[i].Longitude + '</td>';
             filtered += '<td>' + data[i].N_Home_Visits + '</td>';
             filtered += '<td>' + data[i].Pathology + '</td>';
-            filtered += '<td>' + data[i].Patient_Age + '</td>';
+            filtered += '<td>' + Number(data[i].Patient_Age) + '</td>';
             filtered += '<td>' + data[i].Time_Delay + '</td>';
             filtered += '<td>' + data[i].Visit_Status + '</td>';
             filtered += '<td>' + data[i].Zip_Code + '</td>';
@@ -289,8 +290,40 @@ function submitted(id)
           $('#ex-table tbody tr').remove();
           $('#ex-table').append(filtered); 
           filtdata = data; 
-          //console.log(filtdata);
-          arr = filtdata;
+          for (i in filtdata)
+          {
+            var tmp = new Object();
+            age = parseInt(filtdata[i]['Patient_Age'])
+            city_id = parseInt(filtdata[i]['City_ID'])
+            id_personal = parseInt(filtdata[i]['ID_Personal'])
+            id_type = parseInt(filtdata[i]['ID_Type'])
+            minor = parseInt(filtdata[i]['Is_Patient_Minor'])
+            visits = parseInt(filtdata[i]['N_Home_Visits'])
+            time_delay = parseInt(filtdata[i]['Time_Delay'])
+            zipcode = parseInt(filtdata[i]['Zip_Code'])
+            status = parseInt(filtdata[i]['Visit_Status'])
+
+           tmp["City"] = filtdata[i]['City'];
+           tmp["City_ID"] = city_id;
+           tmp["Date"] = filtdata[i]['Date'];
+           tmp["ID_Personal"] = id_personal;
+           tmp["ID_Type"] = id_type;
+           tmp["Is_Patient_Minor"] = minor;
+           tmp["LAT"] = filtdata[i]['Latitude'];
+           tmp["LON"] = filtdata[i]['Longitude'];
+           tmp["N_Home_Visits"] = visits;
+           tmp["Pathology"] = filtdata[i]['Pathology'];;
+           tmp["Patient_Age"] = age;
+           tmp["Time_Delay"] = filtdata[i]['Time_Delay'];;
+           tmp["Visit_Status"] = status;
+           tmp["Zipcode"] = zipcode;
+           // tmp["Geo_Point"] = val.Geo_Poicity_idarr.push(tmp);
+           filtarr.push(tmp);
+          }
+
+          console.log(filtdata);
+          console.log(filtarr);
+          arr = filtarr;
         },
 
         error: function(error) 
@@ -338,25 +371,25 @@ function add500FiltRows()
   var content = '';
   console.log(countFiltered);
 
-  for (i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, filtdata.length); i++) 
+  for (i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, filtarr.length); i++) 
   {
     content += '<tr>';
     content += '<td>' + (i + 1) + '</td>';
-    content += '<td>' + filtdata[i].City + '</td>';
-    content += '<td>' + filtdata[i].City_ID + '</td>';
-    content += '<td>' + filtdata[i].Date + '</td>';
+    content += '<td>' + filtarr[i].City + '</td>';
+    content += '<td>' + filtarr[i].City_ID + '</td>';
+    content += '<td>' + filtarr[i].Date + '</td>';
     // content += '<td>' + arr[i].Geo_Point + '</td>';
-    content += '<td>' + filtdata[i].ID_Personal + '</td>';
-    content += '<td>' + filtdata[i].ID_Type + '</td>';
-    content += '<td>' + filtdata[i].Is_Patient_Minor + '</td>';
-    content += '<td>' + filtdata[i].Latitude + '</td>';
-    content += '<td>' + filtdata[i].Longitude + '</td>';
-    content += '<td>' + filtdata[i].N_Home_Visits + '</td>';
-    content += '<td>' + filtdata[i].Pathology + '</td>';
-    content += '<td>' + filtdata[i].Patient_Age + '</td>';
-    content += '<td>' + filtdata[i].Time_Delay + '</td>';
-    content += '<td>' + filtdata[i].Visit_Status + '</td>';
-    content += '<td>' + filtdata[i].Zipcode + '</td>';
+    content += '<td>' + filtarr[i].ID_Personal + '</td>';
+    content += '<td>' + filtarr[i].ID_Type + '</td>';
+    content += '<td>' + filtarr[i].Is_Patient_Minor + '</td>';
+    content += '<td>' + filtarr[i].Latitude + '</td>';
+    content += '<td>' + filtarr[i].Longitude + '</td>';
+    content += '<td>' + filtarr[i].N_Home_Visits + '</td>';
+    content += '<td>' + filtarr[i].Pathology + '</td>';
+    content += '<td>' + filtarr[i].Patient_Age + '</td>';
+    content += '<td>' + filtarr[i].Time_Delay + '</td>';
+    content += '<td>' + filtarr[i].Visit_Status + '</td>';
+    content += '<td>' + filtarr[i].Zipcode + '</td>';
     content += '</tr>';
   }
   countFiltered += 1;
