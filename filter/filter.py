@@ -36,7 +36,7 @@ def filter_table(data):
 		records["Patient_Age"] = records["Patient_Age"].astype(str).astype(int)
 		records["Time_Delay"] = records["Time_Delay"].astype(str).astype(int)
 		records["Visit_Status"] = records["Visit_Status"].astype(str).astype(int)
-		records["Zip_Code"] = records["Zip_Code"].astype(str).astype(int)
+		records["Zipcode"] = records["Zipcode"].astype(str).astype(int)
 
 		#temp = records
 		#for q in queries:

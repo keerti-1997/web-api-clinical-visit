@@ -267,7 +267,7 @@ function submitted(id)
             filtered += '<td>' + Number(data[i].Patient_Age) + '</td>';
             filtered += '<td>' + data[i].Time_Delay + '</td>';
             filtered += '<td>' + data[i].Visit_Status + '</td>';
-            filtered += '<td>' + data[i].Zip_Code + '</td>';
+            filtered += '<td>' + data[i].Zipcode + '</td>';
             // content += '<td>' + arr[i].Geo_Point + '</td>';
             filtered += '</tr>'; 
             count += 1;
@@ -301,7 +301,7 @@ function submitted(id)
             minor = parseInt(filtdata[i]['Is_Patient_Minor'])
             visits = parseInt(filtdata[i]['N_Home_Visits'])
             time_delay = parseInt(filtdata[i]['Time_Delay'])
-            zipcode = parseInt(filtdata[i]['Zip_Code'])
+            zipcode = parseInt(filtdata[i]['Zipcode'])
             status = parseInt(filtdata[i]['Visit_Status'])
 
            tmp["City"] = filtdata[i]['City'];
