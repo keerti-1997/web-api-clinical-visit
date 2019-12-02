@@ -202,7 +202,7 @@ function submitted(id)
     min = document.getElementById(id).children[0].children[1].children[0].value;
     max = document.getElementById(id).children[1].children[1].children[0].value;
     
-    if(typeof min == "undefined" || typeof max == "undefined")
+    if(min == "" || max == "")
     {
       alert("Input cannot be empty!");
       return;
@@ -220,7 +220,7 @@ function submitted(id)
     var word = document.getElementById(id).value;
     console.log(word);
     
-    if(typeof word == "undefined")
+    if(word == "")
     {
       alert("Input cannot be empty!");
       return;
@@ -249,6 +249,7 @@ function submitted(id)
           countFiltered = 0;
           console.log(data.length)
           console.log(typeof(data))
+          var filtarr = new Array();
           for(i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, data.length); i++)
           {
 
@@ -374,7 +375,7 @@ function add500FiltRows()
   var content = '';
   console.log(countFiltered);
 
-  for (i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, filtdata.length); i++) 
+  for (i = 500 * countFiltered; i < Math.min(500 * countFiltered + 500, filtarr.length); i++) 
   {
     content += '<tr>';
     content += '<td>' + (i + 1) + '</td>';
